@@ -13,13 +13,14 @@
 ActiveRecord::Schema.define(:version => 20110630063513) do
 
   create_table "books", :force => true do |t|
-    t.string   "asin",        :null => false
-    t.string   "title",       :null => false
-    t.string   "authors",     :null => false
-    t.integer  "pages",       :null => false
-    t.boolean  "is_ebook",    :null => false
-    t.string   "image_url",   :null => false
-    t.string   "details_url", :null => false
+    t.string   "asin",                           :null => false
+    t.string   "title",                          :null => false
+    t.string   "authors",                        :null => false
+    t.integer  "pages",       :default => 0,     :null => false
+    t.boolean  "is_ebook",    :default => false, :null => false
+    t.string   "image_url"
+    t.string   "icon_url"
+    t.string   "details_url",                    :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
