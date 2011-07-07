@@ -5,7 +5,7 @@ class BookController < ApplicationController
   # We map our supported sizes to their Amazon Image responses.
   BOOK_IMAGES = { :icon => "SmallImage", :image => "MediumImage" }
 
-  ASIN::Configuration.configure :secret => 'Uf6KBM1SoFz41V5NNZFw3IoCzixQ73m8+tBtVjL2', :key => 'AKIAJHTAM7STAKSLLXRQ'
+  ASIN::Configuration.configure :secret => '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', :key => 'AKIAJHTAM7STAKSLLXRQ', :logger => nil
 
   def search
   end
