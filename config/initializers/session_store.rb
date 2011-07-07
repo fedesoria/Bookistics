@@ -1,6 +1,6 @@
 # Be sure to restart your server when you modify this file.
 
-ReadingList::Application.config.session_store :cookie_store, :key => '_reading_list_session'
+ReadingList::Application.config.session_store :active_record_store, :key => '_reading_list_'
 
 # Use the database for sessions instead of the cookie-based default,
 # which shouldn't be used to store highly confidential information
