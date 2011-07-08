@@ -30,7 +30,7 @@ GEM
     activesupport (3.0.9)
     addressable (2.2.6)
     arel (2.0.10)
-    asin (0.4.0)
+    asin (0.5.0)
       crack (~> 0.1.8)
       hashie (~> 1.0.0)
       httpi (~> 0.9.2)
@@ -102,7 +102,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  asin (= 0.4.0)
+  asin
   jquery-rails
   oa-core (= 0.2.6)
   oa-oauth (= 0.2.6)
