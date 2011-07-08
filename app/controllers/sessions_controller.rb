@@ -1,13 +1,21 @@
 class SessionsController < ApplicationController
   def create
-    auth = request.env['omniauth.auth']
-    user = User.where(:provider => auth['provider'],
-                      :uid      => auth['uid']).first || User.create_with_auth(auth)
+    omniauth = request.env['omniauth.auth']
 
-    reset_session
-    session[:user_id] = user.id
-
-    redirect_to root_url
+    authentication = Authentication.where(:provider => omniauth['provider'],
+                                          :uid      => omniauth['uid']).first
+    if authentication
+      flash[:notice] = "Signed in!"
+      sign_in_and_redirect(authentication.user)
+    elsif current_user
+      current_user.authentications.create(:provider => omniauth['provider'],
+                                          :uid      => omniauth['uid'])
+      flash[:notice] = 'New authentication added!'
+      redirect_to root_url
+    else
+      user = User.create_from_auth(omniauth)
+      sign_in_and_redirect(user)
+    end
   end
 
   def failure
@@ -16,6 +24,15 @@ class SessionsController < ApplicationController
 
   def destroy
     reset_session
+    redirect_to root_url
+  end
+
+  private
+
+  def sign_in_and_redirect(user)
+    reset_session
+    session[:user_id] = user.id
+
     redirect_to root_url
   end
 end
