@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
   has_many :authentications
+  has_many :reading_logs
+  has_many :books, :through => :reading_logs
 
   attr_protected :name, :email
 
