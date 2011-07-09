@@ -1,4 +1,4 @@
-class BookController < ApplicationController
+class BooksController < ApplicationController
 
   SEARCH_RESULTS = 3
 

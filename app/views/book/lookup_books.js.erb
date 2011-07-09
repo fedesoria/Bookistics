@@ -1,4 +1,0 @@
-$('ul').html('')
-<%  @books.each do |item| %>
-$('ul').append("<li><img src=\"<%= item.raw[BookController::BOOK_IMAGES[:icon]].URL %>\"><a href=\"<%= item.details_url %>\"><%= json_escape(item.title) %></a></li>");
-<% end %>
