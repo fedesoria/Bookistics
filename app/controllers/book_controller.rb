@@ -15,13 +15,13 @@ class BookController < ApplicationController
 
     unless keywords.nil?
       # Default ResponseGroup is small, we specify it anyways in case it ever changes.
-      @results = ASIN.client.search(:Keywords      => keywords,
-                                    :SearchIndex   => :Books,
-                                    :ResponseGroup => :Small) || []
+      @results = ASIN::Client.instance.search(:Keywords      => keywords,
+                                              :SearchIndex   => :Books,
+                                              :ResponseGroup => :Small) || []
       unless @results.empty?
         @books = []
         @results.take(SEARCH_RESULTS).each do |result|
-          image_info = ASIN.client.lookup(result.asin, :ResponseGroup => :Images)
+          image_info = ASIN::Client.instance.lookup(result.asin, :ResponseGroup => :Images)
 
           @books << result
 
