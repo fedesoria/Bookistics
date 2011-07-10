@@ -1,4 +1,5 @@
 class BooksController < ApplicationController
+  before_filter :require_user, :only => [ :create ]
 
   SEARCH_RESULTS = 3
 
@@ -75,5 +76,9 @@ class BooksController < ApplicationController
       flash[:notice] = "Invalid ASIN given."
       redirect_to root_url
     end
+  end
+
+  def index
+    @books = current_user.books
   end
 end

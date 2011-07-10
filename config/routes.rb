@@ -2,7 +2,8 @@ ReadingList::Application.routes.draw do
   get  'books/search'
   post 'books/search', :controller => :books, :action => :lookup_books
 
-  get 'books/create'
+  get  'books/index'
+  post 'books/create'
 
   match '/auth/:provider/callback' => 'sessions#create'
   match '/auth/failure'            => 'sessions#failure'

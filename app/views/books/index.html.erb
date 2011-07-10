@@ -1,0 +1,13 @@
+<p><%= current_user.name %>'s books:</p>
+<% @books.each do |book| %>
+  <p>
+  <div>
+    <img src="<%= book.image_url %>">
+    <table>
+    <tr><td>Title:</td><td><a href="<%= book.details_url %>"><%= book.title %></a></td></tr>
+    <tr><td>Author(s):</td><td><%= book.authors %></td></tr>
+    <tr><td># of pages:</td><td><%= book.pages %></td></tr>
+    </table>
+  </div>
+  </p>
+<% end %>
