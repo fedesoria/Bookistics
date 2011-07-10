@@ -33,4 +33,47 @@ class BooksController < ApplicationController
       end
     end
   end
+
+  def create
+    asin = params[:asin]
+
+    if !asin.nil?
+      @book = Book.find_by_asin(asin)
+
+      if !@book.nil?
+        if !current_user.books.any? { |book| book.asin == @book.asin }
+          current_user.books << @book
+          current_user.save!
+        end
+
+        redirect_to root_url
+      else
+        @lookup = ASIN::Client.instance.lookup(asin, :ResponseGroup => :Medium)
+
+        if !@lookup.asin.nil?
+          @book = Book.new(:asin => @lookup.asin,
+                           :title => @lookup.title,
+                           :authors => @lookup.raw.ItemAttributes.Author.respond_to?(:join) ?
+                             @lookup.raw.ItemAttributes.Author.join(', ') :
+                             @lookup.raw.ItemAttributes.Author,
+                           :pages => @lookup.raw.ItemAttributes.NumberOfPages,
+                           :image_url => @lookup.raw[BOOK_IMAGES[:image]].URL,
+                           :icon_url => @lookup.raw[BOOK_IMAGES[:icon]].URL,
+                           :details_url => @lookup.details_url)
+          @book.save!
+
+          current_user.books << @book
+          current_user.save!
+
+          redirect_to root_url
+        else
+          flash[:notice] = "ASIN doesn't exist!"
+          redirect_to root_url
+        end
+      end
+    else
+      flash[:notice] = "Invalid ASIN given."
+      redirect_to root_url
+    end
+  end
 end
