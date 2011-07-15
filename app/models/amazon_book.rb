@@ -18,9 +18,7 @@ class AmazonBook
   end
 
   def attributes
-    result = {}
-    ATTRIBUTES_LIST.each { |attrb| result[attrb.to_s] = send(attrb) }
-    result
+    Hash[*ATTRIBUTES_LIST.collect { |attrb| [attrb.to_s, send(attrb)] }.flatten]
   end
 
   class << self
@@ -32,8 +30,8 @@ class AmazonBook
       unless keywords.nil?
         # Default ResponseGroup is small, we specify it anyways in case it ever changes.
         results = ASIN::Client.instance.search(:Keywords      => keywords,
-                                                :SearchIndex   => :Books,
-                                                :ResponseGroup => :Small) || []
+                                               :SearchIndex   => :Books,
+                                               :ResponseGroup => :Small) || []
         unless results.empty?
           results.take(SEARCH_RESULTS).each do |result|
             image_info = ASIN::Client.instance.lookup(result.asin, :ResponseGroup => :Images)
