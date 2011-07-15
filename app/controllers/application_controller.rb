@@ -31,4 +31,9 @@ class ApplicationController < ActionController::Base
   def store_location
     session[:return_to] = request.request_uri
   end
+
+  def redirect_to_root_with_error(error_message)
+    flash[:notice] = error_message
+    redirect_to root_url
+  end
 end

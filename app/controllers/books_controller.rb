@@ -15,30 +15,32 @@ class BooksController < ApplicationController
       @book = Book.find_by_asin(asin)
 
       if !@book.nil?
-        if !current_user.books.any? { |book| book.asin == @book.asin }
-          current_user.books << @book
-          current_user.save!
-        end
+        add_book_to_current_user(@book) if
+          !current_user.books.any? { |book| book.asin == @book.asin }
 
         redirect_to root_url
       else
         amazon_book = AmazonBook.find_by_asin(asin)
 
         if !amazon_book.nil?
-          @book = Book.new(amazon_book.attributes)
-
-          current_user.books << @book
-          current_user.save!
+          add_book_to_current_user(Book.new(amazon_book.attributes))
 
           redirect_to root_url
         else
-          flash[:notice] = "ASIN doesn't exist!"
-          redirect_to root_url
+          redirect_to_root_with_error("ASIN doesn't exist!")
         end
       end
     else
-      flash[:notice] = "Invalid ASIN given."
-      redirect_to root_url
+      redirect_to_root_with_error("Invalid ASIN given.")
+    end
+  end
+
+  private
+
+  def add_book_to_current_user (book)
+    unless current_user.nil?
+      current_user.books << book
+      current_user.save!
     end
   end
 end
