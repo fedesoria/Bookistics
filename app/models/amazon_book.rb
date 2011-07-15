@@ -28,13 +28,13 @@ class AmazonBook
       # We first lookup the books with a Small response group, and then fetch the images
       # individually, it's faster than requesting a Medium response group which contains
       # images.
+      books = []
       unless keywords.nil?
         # Default ResponseGroup is small, we specify it anyways in case it ever changes.
         results = ASIN::Client.instance.search(:Keywords      => keywords,
                                                 :SearchIndex   => :Books,
                                                 :ResponseGroup => :Small) || []
         unless results.empty?
-          books = []
           results.take(SEARCH_RESULTS).each do |result|
             image_info = ASIN::Client.instance.lookup(result.asin, :ResponseGroup => :Images)
 
@@ -48,10 +48,9 @@ class AmazonBook
                       :icon_url => image_info.raw["SmallImage"].URL,
                       :details_url => result.details_url)
           end
-          return books
         end
       end
-      []      # If we got to this point we found nothing, return empty array.
+      books
     end
 
     def find_by_asin (asin)
