@@ -17,7 +17,7 @@
   ]
 </div>
 <% if signed_in? %>
-  <div>Welcome <%= current_user.name %>!</div>
+  <div>Welcome <%= link_to current_user.name, profile_path(current_user) %>!</div>
 <% end %>
 
 <%= yield %>

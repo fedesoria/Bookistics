@@ -5,6 +5,10 @@ class User < ActiveRecord::Base
 
   attr_protected :name, :email
 
+  def to_param
+    name
+  end
+
   class << self
     def create_from_auth (auth)
       user = User.new

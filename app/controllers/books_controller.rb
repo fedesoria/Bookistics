@@ -41,8 +41,4 @@ class BooksController < ApplicationController
       redirect_to root_url
     end
   end
-
-  def index
-    @books = current_user.books
-  end
 end
