@@ -17,10 +17,8 @@ class User < ActiveRecord::Base
           user.name = auth['extra']['user_hash']['name'] if auth['extra']['user_hash']['name']
       end
 
-      user.authentications.build(:provider => auth['provider'],
-                                 :uid      => auth['uid'])
+      user.authentications.build(:provider => auth['provider'], :uid => auth['uid'])
       user.save!
-
       user
     end
   end
