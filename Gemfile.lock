@@ -104,7 +104,7 @@ PLATFORMS
 DEPENDENCIES
   asin
   jquery-rails
-  oa-core (= 0.2.6)
-  oa-oauth (= 0.2.6)
+  oa-core
+  oa-oauth
   rails (= 3.0.9)
   sqlite3
