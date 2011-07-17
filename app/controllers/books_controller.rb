@@ -11,10 +11,10 @@ class BooksController < ApplicationController
   def create
     asin = params[:id]
 
-    if !asin.nil?
+    unless asin.nil?
       book = Book.find_by_asin(asin)
 
-      if !book.nil?
+      unless book.nil?
         add_book_to_current_user(book) unless current_user.has_book? book.asin
       else
         amazon_book = AmazonBook.find_by_asin(asin)
