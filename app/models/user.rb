@@ -9,6 +9,14 @@ class User < ActiveRecord::Base
     name
   end
 
+  def has_book? (asin)
+    self.books.any? { |user_book| user_book.asin == asin }
+  end
+
+  def find_log (asin)
+    self.reading_logs.select { |log| log.book.asin == asin }.first if self.has_book?(asin)
+  end
+
   class << self
     def create_from_auth (auth)
       user = User.new
