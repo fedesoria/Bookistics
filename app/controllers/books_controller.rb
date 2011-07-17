@@ -1,7 +1,7 @@
 class BooksController < ApplicationController
-  before_filter :require_user, :only => [ :create ]
+  before_filter :require_user, :only => [ :new, :create, :edit, :update, :lookup_books ]
 
-  def search
+  def new
   end
 
   def lookup_books
@@ -9,30 +9,43 @@ class BooksController < ApplicationController
   end
 
   def create
-    asin = params[:asin]
+    asin = params[:id]
 
     if !asin.nil?
-      @book = Book.find_by_asin(asin)
+      book = Book.find_by_asin(asin)
 
-      if !@book.nil?
-        add_book_to_current_user(@book) if
-          !current_user.books.any? { |book| book.asin == @book.asin }
-
-        redirect_to root_url
+      if !book.nil?
+        add_book_to_current_user(book) unless current_user.has_book? book.asin
       else
         amazon_book = AmazonBook.find_by_asin(asin)
 
-        if !amazon_book.nil?
-          add_book_to_current_user(Book.new(amazon_book.attributes))
-
-          redirect_to root_url
-        else
-          redirect_to_root_with_error("ASIN doesn't exist!")
-        end
+        add_book_to_current_user(Book.new(amazon_book.attributes)) unless amazon_book.nil?
       end
-    else
-      redirect_to_root_with_error("Invalid ASIN given.")
     end
+
+    render :nothing => true
+  end
+
+  def edit
+    asin = params[:id]
+
+    if current_user.has_book?(asin)
+      @book = Book.find_by_asin(asin)
+      @log = current_user.find_log(asin)
+    end
+  end
+
+  def update
+    if current_user.has_book?(params[:id])
+      log = current_user.find_log(params[:id])
+
+      log.start_date = params[:start_date]
+      log.finish_date = params[:finish_date]
+
+      log.save!
+    end
+
+    redirect_to edit_book_path(params[:id])
   end
 
   private

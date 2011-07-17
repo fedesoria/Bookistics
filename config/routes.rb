@@ -1,14 +1,13 @@
 ReadingList::Application.routes.draw do
-  get  'books/search'
-  post 'books/search', :controller => :books, :action => :lookup_books
+  resources :books, :except => [ :show, :index, :destroy ]
 
-  get 'books/create'
+  post 'books/lookup_books', :controller => :books, :action => :lookup_books, :as => :lookup_books
 
-  match 'users/:id' => "users#show", :as => :profile
+  match 'users/:id'   => 'users#show', :as => :profile, :via => :get
 
   match '/auth/:provider/callback' => 'sessions#create'
   match '/auth/failure'            => 'sessions#failure'
   match '/signout'                 => 'sessions#destroy'
 
-  root :to => 'books#search'
+  root :to => 'application#index'
 end

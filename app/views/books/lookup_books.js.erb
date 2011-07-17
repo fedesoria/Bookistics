@@ -1,4 +1,18 @@
-$('ul').html('')
+$('ul').html('');
 <%  @books.each do |item| %>
-$('ul').append("<li><img src=\"<%= item.icon_url %>\"><a href=\"/books/create?asin=<%= item.asin %>\"><%= json_escape(item.title) %></a></li>");
+$('ul').append(
+  "<li> " +
+  "<img src=\"<%= item.icon_url %>\"> " +
+  "<span><%= json_escape(item.title) %></span>, " +
+  "<span><%= json_escape(item.authors) %></span><br />" +
+  "</li>" +
+  <% if !current_user.has_book?(item.asin) %>
+  '<%= form_tag(books_path, :remote => :true) do %>' +
+  '<%= hidden_field_tag 'id', item.asin %>' +
+  '<%= submit_tag 'Add book' %>' +
+  '<% end %>'
+  <% else %>
+    ''
+  <% end %>
+);
 <% end %>
