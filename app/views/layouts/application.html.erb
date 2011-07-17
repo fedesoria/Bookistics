@@ -10,15 +10,14 @@
 <div>
   [
   <% if signed_in? %>
-    <a href="/signout">Sign out</a>
+    <%= link_to 'Profile', profile_path(current_user) %> |
+    <a href="<%= new_book_path %>">Search books</a> |
+    <a href=<%= signout_path %>>Sign out</a>
   <% else %>
     <a href="/auth/twitter">Sign in with twitter!</a>
   <% end %>
   ]
 </div>
-<% if signed_in? %>
-  <div>Welcome <%= link_to current_user.name, profile_path(current_user) %>!</div>
-<% end %>
 
 <%= yield %>
 
