@@ -1,13 +1,20 @@
 <p><%= @user.name %>'s books:</p>
 <% @books.each do |book| %>
   <p>
-  <div>
-    <a href="<%= book.details_url %>"><img src="<%= book.image_url %>"></a>
-    <table>
-    <tr><td>Title:</td><td><a href="<%= edit_book_path(book) %>"><%= book.title %></a></td></tr>
-    <tr><td>Author(s):</td><td><%= book.authors %></td></tr>
-    <tr><td># of pages:</td><td><%= book.pages %></td></tr>
-    </table>
-  </div>
+    <div>
+      <table>
+        <tr>
+          <td><a href="<%= book.details_url %>"><img src="<%= book.image_url %>"></a></td>
+          <td>
+            <table>
+              <tr><td>Title:</td><td><a href="<%= edit_book_path(book) %>"><%= book.title %></a></td></tr>
+              <tr><td>Author(s):</td><td><%= book.authors %></td></tr>
+              <tr><td># of pages:</td><td><%= book.pages %></td></tr>
+              <tr><td>Status:</td><td><%= @user.find_log(book.asin).status_string %></td></tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </div>
   </p>
 <% end %>
