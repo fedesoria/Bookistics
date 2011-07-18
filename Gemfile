@@ -7,3 +7,7 @@ gem 'jquery-rails'
 gem 'asin'
 gem 'oa-core'
 gem 'oa-oauth'
+
+group :development do
+  gem 'heroku_san'
+end
