@@ -1,5 +1,5 @@
 class BooksController < ApplicationController
-  before_filter :require_user, :only => [ :new, :create, :edit, :update, :lookup_books ]
+  before_filter :require_user, :only => [ :new, :create, :edit, :show, :update, :lookup_books ]
 
   def new
   end
@@ -24,6 +24,15 @@ class BooksController < ApplicationController
     end
 
     render :nothing => true
+  end
+
+  def show
+    @book = Book.find_by_asin(params[:id]) || AmazonBook.find_by_asin(params[:id])
+
+    if current_user.has_book?(@book.asin)
+      @log = current_user.find_log(@book.asin)
+      render :edit
+    end
   end
 
   def edit
