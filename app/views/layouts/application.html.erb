@@ -5,21 +5,36 @@
   <%= stylesheet_link_tag :all %>
   <%= javascript_include_tag :defaults %>
   <%= csrf_meta_tag %>
+  
+  <link href='http://fonts.googleapis.com/css?family=Irish+Grover&v2' rel='stylesheet' type='text/css'>
 </head>
 <body>
-<div>
-  [
-  <% if signed_in? %>
+
+  <div id="header">
+    [
+    <% if signed_in? %>
     <%= link_to 'Profile', profile_path(current_user) %> |
     <a href="<%= new_book_path %>">Search books</a> |
     <a href=<%= signout_path %>>Sign out</a>
-  <% else %>
+    <% else %>
     <a href="/auth/twitter">Sign in with twitter!</a>
-  <% end %>
-  ]
-</div>
+    <% end %>
+    ]
+  </div>
 
-<%= yield %>
+  <div id="logo">
+    <h1>Search your book!</h1>
+    <%= form_tag(lookup_books_path, :remote => true) do %>
+    <%= text_field_tag 'keywords', nil, :size => 50 %>
+    <%= submit_tag 'Search!' %>
+    <% end %>    
+  </div>
+
+
+
+  <div id="content">
+    <%= yield %>
+  </div>
 
 </body>
 </html>
