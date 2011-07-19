@@ -29,9 +29,13 @@ class BooksController < ApplicationController
   def show
     @book = Book.find_by_asin(params[:id]) || AmazonBook.find_by_asin(params[:id])
 
-    if current_user.has_book?(@book.asin)
-      @log = current_user.find_log(@book.asin)
-      render :edit
+    unless @book.nil?
+      if current_user.has_book?(@book.asin)
+        @log = current_user.find_log(@book.asin)
+        render :edit
+      end
+    else
+      redirect_to_root_with_error("Book not found!")
     end
   end
 
@@ -41,6 +45,8 @@ class BooksController < ApplicationController
     if current_user.has_book?(asin)
       @book = Book.find_by_asin(asin)
       @log = current_user.find_log(asin)
+    else
+      redirect_to_root_with_error("Book not found!")
     end
   end
 
