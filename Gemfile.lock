@@ -43,20 +43,12 @@ GEM
       multipart-post (~> 1.1.0)
       rack (< 2, >= 1.1.0)
     hashie (1.0.0)
-    heroku (2.3.6)
-      launchy (>= 0.3.2)
-      rest-client (~> 1.6.1)
-      term-ansicolor (~> 1.0.5)
-    heroku_san (1.2.2)
-      heroku (>= 2)
-      rails (>= 2)
     httpi (0.9.5)
       rack
     i18n (0.5.0)
     jquery-rails (1.0.12)
       railties (~> 3.0)
       thor (~> 0.14)
-    launchy (2.0.2)
     mail (2.2.19)
       activesupport (>= 2.3.6)
       i18n (>= 0.4.0)
@@ -100,10 +92,7 @@ GEM
       thor (~> 0.14.4)
     rake (0.8.7)
     rdoc (3.8)
-    rest-client (1.6.3)
-      mime-types (>= 1.16)
     sqlite3 (1.3.3)
-    term-ansicolor (1.0.5)
     thor (0.14.6)
     treetop (1.4.9)
       polyglot (>= 0.3.1)
@@ -114,7 +103,6 @@ PLATFORMS
 
 DEPENDENCIES
   asin
-  heroku_san
   jquery-rails
   oa-core
   oa-oauth
