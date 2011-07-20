@@ -45,7 +45,11 @@ body {
     height: 36px;
 }
 
-div.centered {
+.staging {
+    width: 40em;
+    text-align: justify;
+}
+
+.centered {
     margin: 0 auto;
-    text-align: center;
 }
