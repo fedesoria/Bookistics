@@ -36,7 +36,7 @@ class ApplicationController < ActionController::Base
   end
 
   def redirect_to_root_with_error(error_message)
-    flash[:notice] = error_message
+    flash[:error] = error_message
     redirect_to root_url
   end
 end
