@@ -16,12 +16,14 @@
     [
     <% if signed_in? %>
       <%= link_to 'Home', root_path %> |
-      <%= link_to 'Profile', profile_path(current_user) %> |
+      <%= link_to 'Profile', user_path(current_user) %> |
+      <%= link_to 'Latest users', users_path %> |
       <%= link_to 'Latest books', books_path %> |
       <%= link_to 'Search Books', new_book_path %> |
       <%= link_to 'Sign out', signout_path %>
     <% else %>
       <%= link_to 'Home', root_path %> |
+      <%= link_to 'Latest users', users_path %> |
       <%= link_to 'Latest books', books_path %> |
       <%= link_to 'Sign in with twitter!', '/auth/twitter' %>
     <% end %>
