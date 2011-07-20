@@ -2,6 +2,8 @@ class ReadingLog < ActiveRecord::Base
   belongs_to :user
   belongs_to :book
 
+  default_scope :order => 'updated_at DESC'
+
   STATUSES = { :read => "Read", :started => "Started", :unread => "Unread" }
 
   def read?
