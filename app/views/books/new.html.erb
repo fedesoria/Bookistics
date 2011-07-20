@@ -1,6 +1,16 @@
-<div>
-<ul>
+<% content_for :head do %>
+  <%= javascript_include_tag 'search_book.js' %>
+<% end %>
 
-</ul>
+<%= form_tag(lookup_books_path, :remote => true, :id => :search_form) do %>
+  <div id="search_form_container">
+    <%= text_field_tag 'keywords', nil, :size => 50 %>
+    <%= submit_tag 'Search!' %>
+  </div>
+<% end %>
+
+<div>
+  <ul id="search_results">
+  </ul>
 </div>
 

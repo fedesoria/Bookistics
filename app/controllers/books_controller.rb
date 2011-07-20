@@ -22,8 +22,6 @@ class BooksController < ApplicationController
         add_book_to_current_user(Book.new(amazon_book.attributes)) unless amazon_book.nil?
       end
     end
-
-    render :nothing => true
   end
 
   def show

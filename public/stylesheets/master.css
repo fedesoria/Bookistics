@@ -27,3 +27,25 @@ body {
     margin: 0 auto;
     width: 980px;
 }
+
+#search_form_container {
+    margin: 0 auto;
+    width: 25em;
+}
+
+#search_results {
+    list-style-type: none;
+}
+
+.loading {
+    background-image: url('/images/loading.gif');
+    background-repeat: no-repeat;
+    margin: 0 auto;
+    width: 36px;
+    height: 36px;
+}
+
+div.centered {
+    margin: 0 auto;
+    text-align: center;
+}
