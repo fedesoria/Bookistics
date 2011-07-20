@@ -14,12 +14,13 @@
 
   <div id="header">
     [
+    <%= link_to 'Home', root_path %> |
     <% if signed_in? %>
-    <%= link_to 'Profile', profile_path(current_user) %> |
-    <a href="<%= new_book_path %>">Search books</a> |
-    <a href=<%= signout_path %>>Sign out</a>
-    <% else %>
-    <a href="/auth/twitter">Sign in with twitter!</a>
+      <%= link_to 'Profile', profile_path(current_user) %> |
+      <%= link_to 'Search Books', new_book_path %> |
+      <%= link_to 'Sign out', signout_path %>
+    <%g else %>
+      <%= link_to 'Sign in with twitter!', '/auth/twitter' %>
     <% end %>
     ]
   </div>
