@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
                                           :uid      => omniauth['uid']).first
     if authentication
       flash[:notice] = "Signed in!"
-      sign_in_and_redirect(authentication.user)
+      sign_in_and_redirect(authentication.user, omniauth)
     elsif current_user
       current_user.authentications.create(:provider => omniauth['provider'],
                                           :uid      => omniauth['uid'])
@@ -17,7 +17,7 @@ class SessionsController < ApplicationController
       redirect_to root_url
     else
       user = User.create_from_auth(omniauth)
-      sign_in_and_redirect(user)
+      sign_in_and_redirect(user, omniauth)
     end
   end
 
@@ -32,9 +32,10 @@ class SessionsController < ApplicationController
 
   private
 
-  def sign_in_and_redirect(user)
+  def sign_in_and_redirect(user, auth)
     reset_session
     session[:user_id] = user.id
+    session[:user_auth] = auth
 
     redirect_to root_url
   end
