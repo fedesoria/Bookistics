@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   attr_protected :name, :email
 
   def to_param
-    name
+    User.escape(name)
   end
 
   def has_book? (asin)
@@ -32,6 +32,14 @@ class User < ActiveRecord::Base
       user.authentications.build(:provider => auth['provider'], :uid => auth['uid'])
       user.save!
       user
+    end
+
+    def escape(value)
+      value.gsub(/ /, "_")
+    end
+
+    def unescape(value)
+      value.gsub(/_/, " ")
     end
   end
 end
