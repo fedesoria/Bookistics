@@ -1,6 +1,12 @@
 class BooksController < ApplicationController
   before_filter :require_user, :only => [ :new, :create, :edit, :show, :update, :lookup_books ]
 
+  NUM_OF_BOOKS_ON_INDEX = 15
+
+  def index
+    @books = Book.order('created_at DESC').limit(NUM_OF_BOOKS_ON_INDEX)
+  end
+
   def new
   end
 

@@ -1,15 +1,8 @@
+<%= render :partial => 'book', :locals => { :book => @book } %>
 <p>
-  <div>
-    <img src="<%= @book.image_url %>">
-    <table>
-      <tr><td>Title:</td><td><a href="<%= @book.details_url %>"><%= @book.title %></a></td></tr>
-      <tr><td>Author(s):</td><td><%= @book.authors %></td></tr>
-      <tr><td># of pages:</td><td><%= @book.pages %></td></tr>
-    </table>
-  </div>
-</p>
 <%= form_tag(book_path(@book.asin), :remote => :true, :method => :put) do %>
-<%= label_tag 'Start Date' %><%= text_field_tag 'start_date', @log.start_date %>
-<%= label_tag 'Finish Date' %><%= text_field_tag 'finish_date', @log.finish_date %>
-<%= submit_tag 'Update' %>
+  <%= label_tag 'Start Date' %><%= text_field_tag 'start_date', @log.start_date %>
+  <%= label_tag 'Finish Date' %><%= text_field_tag 'finish_date', @log.finish_date %>
+  <%= submit_tag 'Update' %>
 <% end %>
+</p>

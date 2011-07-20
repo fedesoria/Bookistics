@@ -1,0 +1,4 @@
+<h2>Latest books added: </h2>
+<% @books.each do |book| %>
+  <%= render :partial => 'book', :locals => { :book => book } %>
+<% end %>

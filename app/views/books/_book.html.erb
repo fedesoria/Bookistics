@@ -1,0 +1,16 @@
+<div>
+  <table width="100%">
+    <tr>
+      <td width="20%" style="text-align=center;">
+        <img src="<%= book.image_url %>">
+      </td>
+      <td>
+        <table>
+          <tr><td>Title:</td><td><a href="<%= book_path(book) if current_user %>"><%= book.title %></a></td></tr>
+          <tr><td>Author(s):</td><td><%= book.authors %></td></tr>
+          <tr><td># of pages:</td><td><%= book.pages %></td></tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</div>

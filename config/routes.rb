@@ -1,5 +1,5 @@
 ReadingList::Application.routes.draw do
-  resources :books, :except => [ :index, :destroy ]
+  resources :books, :except => [ :destroy ]
 
   post 'books/lookup_books', :controller => :books, :action => :lookup_books, :as => :lookup_books
 
