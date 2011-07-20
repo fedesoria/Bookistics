@@ -1,0 +1,16 @@
+<li>
+  <table>
+    <tr>
+      <td><image src="<%= book.icon_url %>"></td>
+      <td><span><%= html_encode(book.title) %></span> <span>(<%= html_encode(book.authors) %>)</span></td>
+      <td>
+        <% unless current_user.has_book?(book.asin) %>
+          <%= form_tag(books_path, :remote => :true) do %>
+            <%= hidden_field_tag 'id', book.asin %>
+            <%= submit_tag 'Add book' %>
+          <% end %>
+        <% end %>
+      </td>
+    </tr>
+  </table>
+</li>

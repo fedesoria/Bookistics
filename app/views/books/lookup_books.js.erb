@@ -2,24 +2,5 @@ $('#search_results').html('');
 $('#search_results').removeClass('loading');
 
 <%  @books.each do |item| %>
-  <%
-    entry = %Q(
-    <li>
-    <table>
-    <tr>
-      <td><image src="#{ item.icon_url }"></td>
-      <td><span>#{ html_encode(item.title) }</span> <span>(#{ html_encode(item.authors) })</span></td>
-      <td>#{
-        if !current_user.has_book?(item.asin)
-          form_tag(books_path, :remote => :true) do
-            hidden_field_tag 'id', item.asin
-            submit_tag 'Add book'
-          end
-        end
-      }</td>
-    </tr>
-    </table>
-    </li>
-  ) %>
-  $('#search_results').append('<%= entry.gsub("\n", "").html_safe %>');
+  $('#search_results').append('<%= strip_newlines render(:partial => 'amazon_book_result', :locals => { :book => item }) %>');
 <% end %>
