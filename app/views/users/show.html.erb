@@ -1,5 +1,6 @@
 <h2><%= @user.name %>'s books:</h2>
-<% @user.books.each do |book| %>
+<% @user.reading_logs.order('updated_at DESC').each do |log| %>
+  <% book = log.book %>
   <p>
     <div>
       <table>
