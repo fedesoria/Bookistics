@@ -56,15 +56,21 @@ class BooksController < ApplicationController
 
   def update
     if current_user.has_book?(params[:id])
-      log = current_user.find_log(params[:id])
+      start_date = Chronic.parse(params[:start_date])
+      finish_date = Chronic.parse(params[:finish_date])
 
-      log.start_date = Chronic.parse(params[:start_date])
-      log.finish_date = Chronic.parse(params[:finish_date])
+      unless start_date.nil? or finish_date.nil?
+        log = current_user.find_log(params[:id])
 
-      log.save!
+        log.start_date = start_date.to_date
+        log.finish_date = finish_date.to_date
+        log.save!
+
+        flash[:notice] = 'Updated successfully!'
+      else
+        flash[:error] = 'Date was not recognized!'
+      end
     end
-
-    redirect_to edit_book_path(params[:id])
   end
 
   private
