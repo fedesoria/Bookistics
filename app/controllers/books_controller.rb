@@ -59,11 +59,12 @@ class BooksController < ApplicationController
       start_date = Chronic.parse(params[:start_date])
       finish_date = Chronic.parse(params[:finish_date])
 
-      unless start_date.nil? or finish_date.nil?
+      unless (start_date.nil? and !params[:start_date].empty?) or
+          (finish_date.nil? and !params[:finish_date].empty?)
         log = current_user.find_log(params[:id])
 
-        log.start_date = start_date.to_date
-        log.finish_date = finish_date.to_date
+        log.start_date = (params[:start_date].empty?) ? nil : start_date.to_date
+        log.finish_date = (params[:finish_date].empty?) ? nil : finish_date.to_date
         log.save!
 
         flash[:notice] = 'Updated successfully!'
