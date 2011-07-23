@@ -4,7 +4,7 @@ class BooksController < ApplicationController
   NUM_OF_BOOKS_ON_INDEX = 15
 
   def index
-    @books = Book.order('created_at DESC').limit(NUM_OF_BOOKS_ON_INDEX)
+    @books = Book.includes(:users).order('books.created_at DESC').limit(NUM_OF_BOOKS_ON_INDEX)
   end
 
   def new
