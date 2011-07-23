@@ -58,8 +58,8 @@ class BooksController < ApplicationController
     if current_user.has_book?(params[:id])
       log = current_user.find_log(params[:id])
 
-      log.start_date = params[:start_date]
-      log.finish_date = params[:finish_date]
+      log.start_date = Chronic.parse(params[:start_date])
+      log.finish_date = Chronic.parse(params[:finish_date])
 
       log.save!
     end
