@@ -6,7 +6,7 @@
       </td>
       <td>
         <table>
-          <tr><td>Title:</td><td><a href="<%= book_path(book) if current_user %>"><%= book.title %></a></td></tr>
+          <tr><td>Title:</td><td><% if current_user %><%= link_to book.title, book_path(book) %><% else %><%= book.title %><% end %></td></tr>
           <tr><td>Author(s):</td><td><%= book.authors %></td></tr>
           <tr><td># of pages:</td><td><%= book.pages %></td></tr>
           <tr><td>Some readers:</td><td>

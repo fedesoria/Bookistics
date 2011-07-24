@@ -1,1 +1,5 @@
-$('#search_results').html('<div class="centered">Book added successfully!</div>');
+<%=
+  update_page do |page|
+    page.redirect_to edit_book_path(@book)
+  end
+%>

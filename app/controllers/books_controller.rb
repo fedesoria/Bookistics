@@ -18,14 +18,14 @@ class BooksController < ApplicationController
     asin = params[:id]
 
     unless asin.nil?
-      book = Book.find_by_asin(asin)
+      @book = Book.find_by_asin(asin)
 
-      unless book.nil?
-        add_book_to_current_user(book) unless current_user.has_book? book.asin
+      unless @book.nil?
+        add_book_to_current_user(@book) unless current_user.has_book? @book.asin
       else
         amazon_book = AmazonBook.find_by_asin(asin)
 
-        add_book_to_current_user(Book.new(amazon_book.attributes)) unless amazon_book.nil?
+        add_book_to_current_user(@book = Book.new(amazon_book.attributes)) unless amazon_book.nil?
       end
     end
   end
