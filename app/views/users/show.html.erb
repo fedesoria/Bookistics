@@ -4,10 +4,10 @@
     <div>
       <table>
         <tr>
-          <td><a href="<%= book.details_url %>"><img src="<%= book.image_url %>"></a></td>
+          <td><%= link_to book.details_url do %><%= image_tag book.image_url %><% end %></td>
           <td>
             <table>
-              <tr><td>Title:</td><td><a href="<%= book_path(book) %>"><%= book.title %></a></td></tr>
+              <tr><td>Title:</td><td><%= link_to book.title, book_path(book) %></td></tr>
               <tr><td>Author(s):</td><td><%= book.authors %></td></tr>
               <tr><td># of pages:</td><td><%= book.pages %></td></tr>
               <tr><td>Status:</td><td><%= @user.find_log(book.asin).status_string %></td></tr>

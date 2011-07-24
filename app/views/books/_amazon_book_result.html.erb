@@ -1,7 +1,7 @@
 <li>
   <table>
     <tr>
-      <td><image src="<%= book.icon_url %>"></td>
+      <td><%= image_tag book.icon_url %></td>
       <td><span><%= html_encode(book.title) %></span> <span>(<%= html_encode(book.authors) %>)</span></td>
       <td>
         <%= render :partial => 'add_book_form', :locals => { :book => book } %>
