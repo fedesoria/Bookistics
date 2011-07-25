@@ -9,9 +9,16 @@
           <tr><td>Title:</td><td><% if current_user %><%= link_to book.title, book_path(book) %><% else %><%= book.title %><% end %></td></tr>
           <tr><td>Author(s):</td><td><%= book.authors %></td></tr>
           <tr><td># of pages:</td><td><%= book.pages %></td></tr>
-          <tr><td>Some readers:</td><td>
-            <%= get_book_users_links book %>
-          </td></tr>
+          <% unless user %>
+            <tr><td>Some readers:</td><td>
+              <%= get_book_users_links book %>
+            </td></tr>
+          <% else %>
+            <% log = user.find_log(book.asin) %>
+            <tr><td><% if log.read? %>Read the book in:<% else %>Been reading this book for:<% end %></td><td>
+              <%= log.reading_for %> days
+            </td></tr>
+          <% end %>
         </table>
       </td>
     </tr>

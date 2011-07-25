@@ -1,4 +1,4 @@
-<%= render :partial => 'book', :locals => { :book => @book } %>
+<%= render :partial => 'shared/book', :locals => { :book => @book, :user => nil } %>
 <p>
 <%= form_tag(book_path(@book.asin), :remote => :true, :method => :put) do %>
   <%= label_tag 'Start Date' %><%= text_field_tag 'start_date', format_date(@log.start_date) %>
