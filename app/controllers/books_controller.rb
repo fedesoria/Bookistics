@@ -70,7 +70,7 @@ class BooksController < ApplicationController
           log.save!
           flash[:notice] = 'Updated successfully!'
         else
-          flash[:error] = 'The log cannot be saved, are your dates alright?'
+          flash[:error] = log.errors.full_messages.first
         end
       else
         flash[:error] = 'Date was not recognized!'
