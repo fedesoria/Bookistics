@@ -8,16 +8,12 @@ class ReadingLog < ActiveRecord::Base
 
   validate :finish_date_cannot_be_less_than_start_date, :if => :dates_not_nil?
 
-  def read?
-    !start_date.nil? and !finish_date.nil?
-  end
-
   def started?
     !start_date.nil?
   end
 
-  def finished?
-    !finish_date.nil?
+  def read?
+    dates_not_nil?
   end
 
   def status
@@ -34,6 +30,25 @@ class ReadingLog < ActiveRecord::Base
     STATUSES[status]
   end
 
+  def reading_for
+    return 0 unless started?
+    return days_between_dates(start_date, Date.today) unless read?
+    days_between_dates(start_date, finish_date)
+  end
+
+  def read_in_days
+    return 0 unless read?
+    days_between_dates(start_date, finish_date)
+  end
+
+  private
+
+  def days_between_dates (first, second)
+    (second - first).abs.to_i
+  end
+end
+
+class ReadingLog
   def dates_not_nil?
     !start_date.nil? && !finish_date.nil?
   end
