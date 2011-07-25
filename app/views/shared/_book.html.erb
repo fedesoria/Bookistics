@@ -15,9 +15,15 @@
             </td></tr>
           <% else %>
             <% log = user.find_log(book.asin) %>
-            <tr><td><% if log.read? %>Read the book in:<% else %>Been reading this book for:<% end %></td><td>
-              <%= log.reading_for %> days
-            </td></tr>
+            <tr>
+              <% if log.read? %>
+                <td>Read the book in </td><td><%= log.read_in_days %> days.</td>
+              <% elsif log.started? %>
+                <td>Been reading this book for </td><td><%= log.reading_for %> days.</td>
+              <% else %>
+                <td colspan="2">Has not started this book yet.</td>
+              <% end %>
+            </tr>
           <% end %>
         </table>
       </td>
