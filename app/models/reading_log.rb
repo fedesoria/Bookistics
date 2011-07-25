@@ -7,6 +7,7 @@ class ReadingLog < ActiveRecord::Base
   STATUSES = { :read => "Read", :started => "Started", :unread => "Unread" }
 
   validate :finish_date_cannot_be_less_than_start_date, :if => :dates_not_nil?
+  validate :finish_date_without_start_date
 
   def started?
     !start_date.nil?
@@ -56,5 +57,10 @@ class ReadingLog
   def finish_date_cannot_be_less_than_start_date
     errors.add(:finish_date, "cannot happen before start_date right?") unless
       finish_date >= start_date
+  end
+
+  def finish_date_without_start_date
+    errors.add(:start_date, "cannot be empty if you set up a finish date!") if
+      start_date.nil? and !finish_date.nil?
   end
 end
