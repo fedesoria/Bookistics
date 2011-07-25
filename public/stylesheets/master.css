@@ -53,3 +53,8 @@ body {
 .centered {
     margin: 0 auto;
 }
+
+#change_list {
+    list-style-type: circle;
+    font-size: 0.85em;
+}
