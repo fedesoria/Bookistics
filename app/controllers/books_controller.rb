@@ -65,9 +65,13 @@ class BooksController < ApplicationController
 
         log.start_date = (params[:start_date].empty?) ? nil : start_date.to_date
         log.finish_date = (params[:finish_date].empty?) ? nil : finish_date.to_date
-        log.save!
 
-        flash[:notice] = 'Updated successfully!'
+        if log.valid?
+          log.save!
+          flash[:notice] = 'Updated successfully!'
+        else
+          flash[:error] = 'The log cannot be saved, are your dates alright?'
+        end
       else
         flash[:error] = 'Date was not recognized!'
       end
