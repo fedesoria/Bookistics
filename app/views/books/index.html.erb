@@ -1,4 +1,4 @@
 <h2>Latest books added: </h2>
 <% @books.each do |book| %>
-  <%= render :partial => 'shared/book', :locals => { :book => book, :user => nil } %>
+  <%= render 'shared/book', :book => book, :user => nil %>
 <% end %>

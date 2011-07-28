@@ -2,5 +2,5 @@ $('#search_results').html('');
 $('#search_results').removeClass('loading');
 
 <%  @books.each do |item| %>
-  $('#search_results').append('<%= strip_newlines render(:partial => 'amazon_book_result', :locals => { :book => item }) %>');
+  $('#search_results').append('<%= strip_newlines render('amazon_book_result', :book => item) %>');
 <% end %>

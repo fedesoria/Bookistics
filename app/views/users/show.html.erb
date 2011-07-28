@@ -1,4 +1,4 @@
 <h2><%= @user.name %>'s books:</h2>
 <% @user.books.each do |book| %>
-  <%= render :partial => 'shared/book', :locals => { :book => book, :user => @user } %>
+  <%= render 'shared/book', :book => book, :user => @user %>
 <% end %>
