@@ -42,3 +42,7 @@ body {
     list-style-type: circle;
     font-size: 0.85em;
 }
+
+.align-center {
+    text-align: center;
+}
