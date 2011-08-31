@@ -1,6 +1,8 @@
 <% unless current_user.has_book?(book.asin) %>
-   <%= form_tag(books_path, :remote => :true) do %>
+  <%= form_tag(books_path, :remote => :true) do %>
     <%= hidden_field_tag 'id', book.asin %>
     <%= submit_tag 'Add book', :class => 'btn primary' %>
   <% end %>
+<% else %>
+  <strong class="alert-message success disabled">You have this book!</strong>
 <% end %>
