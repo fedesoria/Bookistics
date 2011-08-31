@@ -3,12 +3,12 @@
 <head>
   <title>ReadingList</title>
   <%= stylesheet_link_tag :all %>
-  
+
   <%= javascript_include_tag :defaults %>
   <%= csrf_meta_tag %>
 
   <%= stylesheet_link_tag 'http://fonts.googleapis.com/css?family=Irish+Grover&v2' %>
-  <%= stylesheet_link_tag 'public/stylesheets/bootstrap.css' %>
+  <%= stylesheet_link_tag 'bootstrap.css' %>
 
   <%= yield :head %>
 </head>
@@ -21,20 +21,20 @@
                     <h3><a href="#">My Reading List</a></h3>
                     <ul>
                         <li class="active"><%= link_to 'Home', root_path %></li>
-                        
+
                         <% if signed_in? %>
                         <li> <%= link_to 'Profile', user_path(current_user) %></li>
                         <li><%= link_to 'Latest users', users_path %></li>
                         <li><%= link_to 'Latest books', books_path %></li>
                         <li><%= link_to 'Search Books', new_book_path %></li>
                         <li><%= link_to 'Sign out', signout_path %></li>
-                        
+
                         <% else %>
-                        
+
                         <li><%= link_to 'Latest users', users_path %></li>
                         <li><%= link_to 'Latest books', books_path %></li>
                         <li><%= link_to 'Sign in with twitter!', '/auth/twitter' %></li>
-                        
+
                         <% end %>
                     </ul>
                     <form action="">
