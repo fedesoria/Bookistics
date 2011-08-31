@@ -3,9 +3,16 @@
 <% end %>
 
 <%= form_tag(lookup_books_path, :remote => true, :id => :search_form) do %>
-  <div id="search_form_container">
-    <%= text_field_tag 'keywords', nil, :size => 50 %>
-    <%= submit_tag 'Search your book!' %>
+  <div class="row">
+    <div class="span12 columns offset2">
+      <div class="center-block">
+        <%= label_tag 'keywords', 'Book keywords:' %>
+        <div class="input">
+          <%= text_field_tag 'keywords', nil, :class => 'xlarge' %>
+          <%= submit_tag 'Search your book!', :class => 'btn primary input' %>
+        </div>
+      </div>
+    </div>
   </div>
 <% end %>
 
