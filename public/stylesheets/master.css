@@ -17,11 +17,6 @@
     margin: 15px 0;
 }
 
-#content {
-    margin: 0 auto;
-    width: 980px;
-}
-
 #search_form_container {
     margin: 0 auto;
     width: 25em;
@@ -29,6 +24,12 @@
 
 #search_results {
     list-style-type: none;
+}
+
+#search_results table td form {
+    margin: 0;
+    padding: 0;
+    float: right;
 }
 
 .loading {

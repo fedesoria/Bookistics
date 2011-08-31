@@ -1,11 +1,14 @@
 <li>
-  <table>
-    <tr>
-      <td><%= image_tag book.icon_url %></td>
-      <td><span><%= html_encode(book.title) %></span> <span>(<%= html_encode(book.authors) %>)</span></td>
-      <td>
-        <%= render 'add_book_form', :book => book %>
-      </td>
-    </tr>
-  </table>
+    <table class="zebra-striped">
+        <tr>
+            <td><%= image_tag book.icon_url %></td>
+            <td>
+                <span><%= html_encode(book.title) %></span>
+                <span>(<%= html_encode(book.authors) %>)</span>
+            </td>
+            <td>
+                <%= render 'add_book_form', :book => book %>
+            </td>
+        </tr>
+    </table>
 </li>
