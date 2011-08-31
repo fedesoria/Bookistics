@@ -45,14 +45,14 @@
             </div><!-- /topbar -->
         </div>
 
-        <% if flash[:notice] %>
-        <div id="notice"><%= flash[:notice] %></div>
-        <% end %>
-        <% if flash[:error] %>
-        <div id="error"><%= flash[:error] %></div>
-        <% end %>
-
         <div id="content" class="container">
+            <% if flash[:notice] %>
+            <div class="alert-message info"><%= flash[:notice] %></div>
+            <% end %>
+            <% if flash[:error] %>
+            <div class="alert-message error"><%= flash[:error] %></div>
+            <% end %>
+
             <%= yield %>
         </div>
     </body>
