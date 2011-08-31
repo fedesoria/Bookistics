@@ -14,36 +14,46 @@
 </head>
 <body>
 
-  <div id="header">
-    [
-    <% if signed_in? %>
-      <%= link_to 'Home', root_path %> |
-      <%= link_to 'Profile', user_path(current_user) %> |
-      <%= link_to 'Latest users', users_path %> |
-      <%= link_to 'Latest books', books_path %> |
-      <%= link_to 'Search Books', new_book_path %> |
-      <%= link_to 'Sign out', signout_path %>
-    <% else %>
-      <%= link_to 'Home', root_path %> |
-      <%= link_to 'Latest users', users_path %> |
-      <%= link_to 'Latest books', books_path %> |
-      <%= link_to 'Sign in with twitter!', '/auth/twitter' %>
-    <% end %>
-    ]
-  </div>
+    <div class="topbar-wrapper" style="z-index: 5;">
+        <div class="topbar">
+            <div class="fill">
+                <div class="container">
+                    <h3><a href="#">My Reading List</a></h3>
+                    <ul>
+                        <li class="active"><%= link_to 'Home', root_path %></li>
+                        
+                        <% if signed_in? %>
+                        <li> <%= link_to 'Profile', user_path(current_user) %></li>
+                        <li><%= link_to 'Latest users', users_path %></li>
+                        <li><%= link_to 'Latest books', books_path %></li>
+                        <li><%= link_to 'Search Books', new_book_path %></li>
+                        <li><%= link_to 'Sign out', signout_path %></li>
+                        
+                        <% else %>
+                        
+                        <li><%= link_to 'Latest users', users_path %></li>
+                        <li><%= link_to 'Latest books', books_path %></li>
+                        <li><%= link_to 'Sign in with twitter!', '/auth/twitter' %></li>
+                        
+                        <% end %>
+                    </ul>
+                    <form action="">
+                        <input type="text" placeholder="Search Books">
+                        </form>
+                    </div>
+                </div><!-- /fill -->
+            </div><!-- /topbar -->
+        </div>
 
-  <% if flash[:notice] %>
-    <div id="notice"><%= flash[:notice] %></div>
-  <% end %>
-  <% if flash[:error] %>
-    <div id="error"><%= flash[:error] %></div>
-  <% end %>
+        <% if flash[:notice] %>
+        <div id="notice"><%= flash[:notice] %></div>
+        <% end %>
+        <% if flash[:error] %>
+        <div id="error"><%= flash[:error] %></div>
+        <% end %>
 
-  <div id="logo">
-    <h1>Reading list!</h1>
-  </div>
-  <div id="content" class="container">
-    <%= yield %>
-  </div>
-</body>
+        <div id="content" class="container">
+            <%= yield %>
+        </div>
+    </body>
 </html>
