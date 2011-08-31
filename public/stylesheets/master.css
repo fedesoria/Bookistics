@@ -1,10 +1,5 @@
-body {
-    margin: 0px;
-    padding: 0px;
-}
-
 #header {
-    margin: 0 auto;
+    margin: 10px; auto;
     width: 980px;
     text-align: right;
 }
@@ -17,10 +12,9 @@ body {
 }
 
 #logo h1 {
-    font-family: 'Irish Grover', cursive;
-    font-size: 50px;
+    /*font-family: 'Irish Grover', cursive;*/
 
-    margin-bottom: 15px;
+    margin: 15px 0;
 }
 
 #content {
