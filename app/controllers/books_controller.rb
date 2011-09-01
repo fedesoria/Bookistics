@@ -77,6 +77,13 @@ class BooksController < ApplicationController
     end
   end
 
+  def destroy
+    @asin = params[:id]
+    log = current_user.find_log(params[:id])
+    log.destroy
+    flash[:notice] = "Book removed from the list!"
+  end
+
   private
 
   def current_user_has_book?
