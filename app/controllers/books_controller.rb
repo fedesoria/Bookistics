@@ -1,5 +1,6 @@
 class BooksController < ApplicationController
   before_filter :require_user, :only => [ :new, :create, :edit, :show, :update, :lookup_books ]
+  before_filter :current_user_has_book? => [ :edit, :update ]
 
   NUM_OF_BOOKS_ON_INDEX = 15
 
@@ -46,39 +47,43 @@ class BooksController < ApplicationController
   def edit
     asin = params[:id]
 
-    if current_user.has_book?(asin)
-      @book = Book.find_by_asin(asin)
-      @log = current_user.find_log(asin)
-    else
-      redirect_to_root_with_error("Book not found!")
+    @book = Book.find_by_asin(asin)
+    @log = current_user.find_log(asin)
+
+    if @book.nil? or @log.nil?
+      redirect_to_root_with_error('Book was not found!')
     end
   end
 
   def update
-    if current_user.has_book?(params[:id])
-      start_date = Chronic.parse(params[:start_date])
-      finish_date = Chronic.parse(params[:finish_date])
+    start_date = Chronic.parse(params[:start_date])
+    finish_date = Chronic.parse(params[:finish_date])
 
-      unless (start_date.nil? and !params[:start_date].empty?) or
-          (finish_date.nil? and !params[:finish_date].empty?)
-        log = current_user.find_log(params[:id])
+    unless (start_date.nil? and !params[:start_date].empty?) or
+        (finish_date.nil? and !params[:finish_date].empty?)
+      log = current_user.find_log(params[:id])
 
-        log.start_date = (params[:start_date].empty?) ? nil : start_date.to_date
-        log.finish_date = (params[:finish_date].empty?) ? nil : finish_date.to_date
+      log.start_date = (params[:start_date].empty?) ? nil : start_date.to_date
+      log.finish_date = (params[:finish_date].empty?) ? nil : finish_date.to_date
 
-        if log.valid?
-          log.save!
-          flash[:notice] = 'Updated successfully!'
-        else
-          flash[:error] = log.errors.full_messages.first
-        end
+      if log.valid?
+        log.save!
+        flash[:notice] = 'Updated successfully!'
       else
-        flash[:error] = 'Date was not recognized!'
+        flash[:error] = log.errors.full_messages.first
       end
+    else
+      flash[:error] = 'Date was not recognized!'
     end
   end
 
   private
+
+  def current_user_has_book?
+    if current_user.nil? or !current_user.has_book?(params[:id])
+      redirect_to_root_with_error("Sorry but you don't seem to have that book!")
+    end
+  end
 
   def add_book_to_current_user (book)
     unless current_user.nil?
