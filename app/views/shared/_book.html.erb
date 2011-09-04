@@ -1,32 +1,38 @@
 <div>
-  <table width="100%">
-    <tr>
-      <td width="20%" style="text-align=center;">
-        <%= image_tag book.image_url %>
-      </td>
-      <td>
-        <table>
-          <tr><td>Title:</td><td><% if current_user %><%= link_to book.title, book_path(book) %><% else %><%= book.title %><% end %></td></tr>
-          <tr><td>Author(s):</td><td><%= book.authors %></td></tr>
-          <tr><td># of pages:</td><td><%= book.pages %></td></tr>
-          <% unless user %>
-            <tr><td>Some readers:</td><td>
-              <%= get_book_users_links book %>
-            </td></tr>
-          <% else %>
-            <% log = user.find_log(book.asin) %>
-            <tr>
-              <% if log.read? %>
-                <td>Read the book in </td><td><%= log.read_in_days %> days.</td>
-              <% elsif log.started? %>
-                <td>Been reading this book for </td><td><%= log.reading_for %> days.</td>
-              <% else %>
-                <td colspan="2">Has not started this book yet.</td>
-              <% end %>
-            </tr>
-          <% end %>
-        </table>
-      </td>
-    </tr>
+  <ul class="books_table unstyled">
+      <li>
+
+          <div class="image">
+              <%= image_tag book.image_url %>
+          </div>
+          
+
+          <div class="info">
+              <h4>
+                  <% if current_user %><%= link_to book.title, book_path(book) %><% else %><%= book.title %><% end %>
+              </h4>
+              <p>
+                   <%= book.authors %>, <%= book.pages %> Pages
+              </p>
+              <p>
+
+                  <% unless user %>
+                  <strong>Some readers:</strong>
+                  <%= get_book_users_links book %>
+                  <% else %>
+                  <% log = user.find_log(book.asin) %>
+                  <tr>
+                      <% if log.read? %>
+                      <td>Read the book in </td><td><%= log.read_in_days %> days.</td>
+                      <% elsif log.started? %>
+                      <td>Been reading this book for </td><td><%= log.reading_for %> days.</td>
+                      <% else %>
+                      <td colspan="2">Has not started this book yet.</td>
+                      <% end %>
+                  </tr>
+                  <% end %>
+              </p>
+          </div>
+      </li>
   </table>
 </div>

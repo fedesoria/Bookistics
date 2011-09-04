@@ -2,6 +2,16 @@ body {
     padding-top: 40px;
 }
 
+.topbar .sign_twitter {
+    display: block;
+    background-image: url("/images/signin_twitter.png");
+    background-position: 0 0;
+    width: 150px;
+    height: 23px;
+    margin: 10px;
+    padding: 0;
+}
+
 #search_form_container {
     margin: 0 auto;
     width: 25em;
@@ -45,4 +55,21 @@ body {
 
 .align-center {
     text-align: center;
+}
+
+.books_table {
+    width: 100%;
+}
+
+.books_table .image {
+    float: left;
+    padding-right: 20px;
+}
+
+.books_table .image img {
+    width: 80px;
+}
+
+.books_table li {
+    overflow: auto;
 }
