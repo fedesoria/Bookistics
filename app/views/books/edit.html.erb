@@ -6,13 +6,13 @@
       <div class="span5 columns">
         <%= label_tag 'start_date', 'Start Date' %>
         <div class="input">
-          <%= text_field_tag 'start_date', format_date(@log.start_date), :class => 'medium' %>
+          <%= text_field_tag 'start_date', format_date(@log.start_date), :class => 'medium date-picker' %>
         </div>
       </div>
       <div class="span5 columns">
         <%= label_tag 'finish_date', 'Finish Date' %>
         <div class="input">
-          <%= text_field_tag 'finish_date', format_date(@log.finish_date), :class => 'medium' %>
+          <%= text_field_tag 'finish_date', format_date(@log.finish_date), :class => 'medium date-picker' %>
         </div>
       </div>
       <div class="span5 columns">
@@ -30,6 +30,8 @@
 <p>
   <sub>Add the dates when you started your book, and when you finished it. If you only add the start date its fine, it means you are still reading it!</sub>
 </p>
-<p>
-  <sub>You can type your in many ways, however its easier for you, like: Today, Yesterday, Last month, Thursday last week, 5 months before now, October 2006, Oct 06, etc. Go nuts!</sub>
-</p>
+<script type="text/javascript">
+$(document).ready(function () {
+    $('.date-picker').datepicker();
+});
+</script>
