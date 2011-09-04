@@ -37,6 +37,13 @@ class SessionsController < ApplicationController
     session[:user_id] = user.id
     session[:user_auth] = auth
 
+    # Temporal fix to update already existing profiles with these fields.
+    # This only works for twitter, since its the only provider we use at the moment.
+    if auth['user_info']
+      user.update_attributes! :avatar_url => auth['user_info']['image'],
+                              :nickname => auth['user_info']['nickname']
+    end
+
     redirect_to root_url
   end
 end

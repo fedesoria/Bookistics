@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110904041110) do
+ActiveRecord::Schema.define(:version => 20110904212335) do
 
   create_table "authentications", :force => true do |t|
     t.string    "uid",        :null => false
@@ -62,6 +62,8 @@ ActiveRecord::Schema.define(:version => 20110904041110) do
     t.timestamp "created_at"
     t.timestamp "updated_at"
     t.string    "email"
+    t.string    "nickname"
+    t.string    "avatar_url"
   end
 
 end

@@ -22,7 +22,9 @@ class User < ActiveRecord::Base
       user = User.new
 
       if auth['user_info']
-        user.name = auth['user_info']['name'] if auth['user_info']['name']
+        user.name       = auth['user_info']['name'] if auth['user_info']['name']
+        user.avatar_url = auth['user_info']['image'] if auth['user_info']['image']
+        user.nickname   = auth['user_info']['nickname'] if auth['user_info']['nickname']
       end
 
       if auth['extra']['user_hash']
