@@ -4,7 +4,7 @@ class AmazonBook
 
   EMPTY_IMAGE_URL = 'http://g-ecx.images-amazon.com/images/G/01/nav2/dp/no-image-avail-img-map._V192545771_AA300_.gif'
 
-  ATTRIBUTES_LIST = [ :asin, :title, :authors, :pages, :image_url, :icon_url, :details_url ]
+  ATTRIBUTES_LIST = [ :asin, :title, :authors, :pages, :image_url, :icon_url, :details_url, :editorial_review ]
   attr_accessor *ATTRIBUTES_LIST
 
   ASIN::Configuration.configure :secret => 'Uf6KBM1SoFz41V5NNZFw3IoCzixQ73m8+tBtVjL2', :key => 'AKIAJHTAM7STAKSLLXRQ', :logger => nil
@@ -33,16 +33,26 @@ class AmazonBook
         # Default ResponseGroup is small, we specify it anyways in case it ever changes.
         results = ASIN::Client.instance.search(:Keywords      => keywords,
                                                :SearchIndex   => :Books,
-                                               :ResponseGroup => :Small) || []
+                                               :ResponseGroup => :Medium) || []
         unless results.empty?
           results.take(SEARCH_RESULTS).each do |result|
-            image_info = ASIN::Client.instance.lookup(result.asin, :ResponseGroup => :Images)
 
-            unless image_info.empty? or image_info.first.raw['MediumImage'].nil?
-              image_url = image_info.first.raw['MediumImage'].URL
-              icon_url = image_info.first.raw['SmallImage'].URL
-            else
-              image_url = icon_url = EMPTY_IMAGE_URL
+            image_url = icon_url = EMPTY_IMAGE_URL
+
+            if result.raw.key? :MediumImage
+              image_url = result.raw.MediumImage.URL
+            end
+
+            if result.raw.key? :SmallImage
+              icon_url = result.raw.SmallImage.URL
+            end
+
+            editorial_review = nil
+
+            if result.raw.key? :EditorialReviews
+              editorial_review = result.raw.EditorialReviews.EditorialReview.class == Array ?
+                result.raw.EditorialReviews.EditorialReview.first.Content :
+                result.raw.EditorialReviews.EditorialReview.Content
             end
 
             books << AmazonBook.new(:asin => result.asin,
@@ -53,7 +63,8 @@ class AmazonBook
                       :pages => result.raw.ItemAttributes.NumberOfPages,
                       :image_url => image_url,
                       :icon_url => icon_url,
-                      :details_url => result.details_url)
+                      :details_url => result.details_url,
+                      :editorial_review => editorial_review)
           end
         end
       end
@@ -66,11 +77,22 @@ class AmazonBook
       if !lookup.empty? and !lookup.first.asin.nil?
         item = lookup.first
 
-        unless item.raw['MediumImage'].nil?
-          image_url = item.raw['MediumImage'].URL
-          icon_url = item.raw['SmallImage'].URL
-        else
-          image_url = icon_url = EMPTY_IMAGE_URL
+        image_url = icon_url = EMPTY_IMAGE_URL
+
+        if item.raw.key? :MediumImage
+          image_url = item.raw.MediumImage.URL
+        end
+
+        if item.raw.key? :SmallImage
+          icon_url = item.raw.SmallImage.URL
+        end
+
+        editorial_review = nil
+
+        if item.raw.key? :EditorialReviews
+          editorial_review = item.raw.EditorialReviews.EditorialReview.class == Array ?
+            item.raw.EditorialReviews.EditorialReview.first.Content :
+            item.raw.EditorialReviews.EditorialReview.Content
         end
 
         AmazonBook.new(:asin => item.asin,
@@ -81,7 +103,8 @@ class AmazonBook
                        :pages => item.raw.ItemAttributes.NumberOfPages,
                        :image_url => image_url,
                        :icon_url => icon_url,
-                       :details_url => item.details_url)
+                       :details_url => item.details_url,
+                       :editorial_review => editorial_review)
       else
         nil
       end

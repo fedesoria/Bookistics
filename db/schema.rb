@@ -10,57 +10,58 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110717102712) do
+ActiveRecord::Schema.define(:version => 20110904041110) do
 
   create_table "authentications", :force => true do |t|
-    t.string   "uid",        :null => false
-    t.string   "provider",   :null => false
-    t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string    "uid",        :null => false
+    t.string    "provider",   :null => false
+    t.integer   "user_id"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
   end
 
   add_index "authentications", ["uid"], :name => "index_authentications_on_uid"
 
   create_table "books", :force => true do |t|
-    t.string   "asin",                           :null => false
-    t.string   "title",                          :null => false
-    t.string   "authors",                        :null => false
-    t.integer  "pages",       :default => 0,     :null => false
-    t.boolean  "is_ebook",    :default => false, :null => false
-    t.string   "image_url"
-    t.string   "icon_url"
-    t.string   "details_url",                    :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string    "asin",                                :null => false
+    t.string    "title",                               :null => false
+    t.string    "authors",                             :null => false
+    t.integer   "pages",            :default => 0,     :null => false
+    t.boolean   "is_ebook",         :default => false, :null => false
+    t.string    "image_url"
+    t.string    "icon_url"
+    t.string    "details_url",                         :null => false
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+    t.text      "editorial_review"
   end
 
   add_index "books", ["asin"], :name => "index_books_on_asin"
 
   create_table "reading_logs", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "book_id"
-    t.date     "start_date"
-    t.date     "finish_date"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.integer   "user_id"
+    t.integer   "book_id"
+    t.date      "start_date"
+    t.date      "finish_date"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
   end
 
   create_table "sessions", :force => true do |t|
-    t.string   "session_id", :null => false
-    t.text     "data"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string    "session_id", :null => false
+    t.text      "data"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
   end
 
   add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
   add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
 
   create_table "users", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "email"
+    t.string    "name"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+    t.string    "email"
   end
 
 end
