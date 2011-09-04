@@ -24,20 +24,30 @@
                         <li class="active"><%= link_to 'Home', root_path %></li>
 
                         <% if signed_in? %>
-                        <li> <%= link_to 'Profile', user_path(current_user) %></li>
+                        <!--<li> <%= link_to 'Profile', user_path(current_user) %></li>-->
                         <li><%= link_to 'Latest users', users_path %></li>
                         <li><%= link_to 'Latest books', books_path %></li>
                         <li><%= link_to 'Search Books', new_book_path %></li>
-                        <li><%= link_to 'Sign out', signout_path %></li>
+                        <!-- <li><% link_to 'Sign out', signout_path %></li> -->
 
                         <% else %>
 
                         <li><%= link_to 'Latest users', users_path %></li>
                         <li><%= link_to 'Latest books', books_path %></li>
-                        <li><%= link_to 'Sign in with twitter!', '/auth/twitter' %></li>
+                        <!-- <li><% link_to 'Sign in with twitter!', '/auth/twitter' %></li> -->
 
                         <% end %>
                     </ul>
+
+                    <ul class="nav secondary-nav">
+                        <% if signed_in? %>
+                        <li><%= link_to 'My Profile', user_path(current_user) %></li>
+                        <li><%= link_to 'Sign out', signout_path %></li>
+                        <% else %>
+                        <li><a class="sign_twitter" href="/auth/twitter"></a></li>
+                        <% end %>
+                    </ul>
+
                     </div>
                 </div><!-- /fill -->
             </div><!-- /topbar -->

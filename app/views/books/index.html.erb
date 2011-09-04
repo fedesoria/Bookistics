@@ -1,4 +1,5 @@
 <h2>Latest books added: </h2>
+
 <% @books.each do |book| %>
   <%= render 'shared/book', :book => book, :user => nil %>
 <% end %>
