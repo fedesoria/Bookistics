@@ -1,3 +1,4 @@
+
 body {
     padding-top: 40px;
 }
@@ -7,9 +8,17 @@ body {
     background-image: url("/images/signin_twitter.png");
     background-position: 0 0;
     width: 150px;
-    height: 23px;
+    height: 22px;
     margin: 10px;
     padding: 0;
+}
+
+.topbar .sign_twitter:hover {
+    background-position: 0 22px;
+}
+
+.topbar .sign_twitter:active {
+    background-position: 0 46px;
 }
 
 #search_form_container {
