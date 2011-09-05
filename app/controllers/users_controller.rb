@@ -11,6 +11,7 @@ class UsersController < ApplicationController
       @books = Book
         .includes(:reading_logs)
         .where('reading_logs.user_id = ?', @user.id)
+        .order('reading_logs.updated_at DESC')
         .paginate(:page => params[:page])
     else
       redirect_to_root_with_error("User not found")
