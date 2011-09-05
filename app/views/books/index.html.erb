@@ -3,3 +3,4 @@
 <% @books.each do |book| %>
   <%= render 'shared/book', :book => book, :user => nil %>
 <% end %>
+<%= will_paginate @books %>

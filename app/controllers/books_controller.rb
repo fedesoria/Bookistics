@@ -2,10 +2,11 @@ class BooksController < ApplicationController
   before_filter :require_user, :only => [ :new, :create, :edit, :show, :update, :lookup_books ]
   before_filter :current_user_has_book? => [ :edit, :update ]
 
-  NUM_OF_BOOKS_ON_INDEX = 15
-
   def index
-    @books = Book.includes(:users).order('books.created_at DESC').limit(NUM_OF_BOOKS_ON_INDEX)
+    @books = Book
+               .includes(:users)
+               .paginate(:page => params[:page])
+               .order('books.created_at DESC')
   end
 
   def new

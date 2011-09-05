@@ -5,6 +5,8 @@ class User < ActiveRecord::Base
 
   attr_protected :name, :email
 
+  self.per_page = 25
+
   def to_param
     User.escape(name)
   end
