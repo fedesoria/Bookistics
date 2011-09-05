@@ -1,7 +1,9 @@
 <% unless RAILS_ENV == 'production' %>
+<div class="app_info">
+  <h3>Usage: <%= Statistics.app_total_users %> users reading <%= Statistics.app_total_books %> books.</h3>
+</div>
 <div class="centered staging">
-
-    <h1>Welcome</h1>
+<h1>Welcome</h1>
 <p>
 This is a beta/staging version of a book reading list application. The purpose of this little app is to help you keep track of the books you are reading, how much time is taking you to read them, some statistics about your reading, etc.
 </p>
