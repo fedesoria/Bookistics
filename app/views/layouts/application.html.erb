@@ -25,15 +25,15 @@
 
                         <% if signed_in? %>
                         <!--<li> <%= link_to 'Profile', user_path(current_user) %></li>-->
-                        <li><%= link_to 'Latest users', users_path %></li>
-                        <li><%= link_to 'Latest books', books_path %></li>
+                        <li><%= link_to 'Users', users_path %></li>
+                        <li><%= link_to 'Books', books_path %></li>
                         <li><%= link_to 'Search Books', new_book_path %></li>
                         <!-- <li><% link_to 'Sign out', signout_path %></li> -->
 
                         <% else %>
 
-                        <li><%= link_to 'Latest users', users_path %></li>
-                        <li><%= link_to 'Latest books', books_path %></li>
+                        <li><%= link_to 'Users', users_path %></li>
+                        <li><%= link_to 'Books', books_path %></li>
                         <!-- <li><% link_to 'Sign in with twitter!', '/auth/twitter' %></li> -->
 
                         <% end %>
