@@ -1,6 +1,5 @@
 <h2>Latest books added: </h2>
 
-<% @books.each do |book| %>
-  <%= render 'shared/book', :book => book, :user => nil %>
-<% end %>
+<%= render :partial => 'shared/book', :collection => @books, :locals => { :user => nil } %>
+
 <%= will_paginate @books %>

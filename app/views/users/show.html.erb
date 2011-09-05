@@ -1,5 +1,5 @@
 <h2><%= @user.name %>'s books:</h2>
-<% @books.each do |book| %>
-  <%= render 'shared/book', :book => book, :user => @user %>
-<% end %>
+
+<%= render :partial => 'shared/book', :collection => @books, :locals => { :user => @user } %>
+
 <%= will_paginate @books %>
