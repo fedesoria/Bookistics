@@ -40,8 +40,8 @@ body {
     background-image: url('/images/loading.gif');
     background-repeat: no-repeat;
     margin: 0 auto;
-    width: 36px;
-    height: 36px;
+    width: 400px;
+    height: 400px;
 }
 
 #content {
