@@ -1,0 +1,99 @@
+
+app/helpers/application_helper.rb,183
+module ApplicationHelperApplicationHelper1,0
+  def html_encode (value)html_encode2,25
+  def strip_newlines(value)strip_newlines7,169
+  def format_date(value)format_date12,287
+
+app/helpers/books_helper.rb,95
+module BooksHelperBooksHelper1,0
+  def get_book_users_links (book)get_book_users_links4,48
+
+app/helpers/sessions_helper.rb,41
+module SessionsHelperSessionsHelper1,0
+
+app/helpers/users_helper.rb,35
+module UsersHelperUsersHelper1,0
+
+app/controllers/books_controller.rb,413
+class BooksController < ApplicationControllerBooksController1,0
+  def indexindex5,205
+  def newnew12,371
+  def lookup_bookslookup_books15,388
+  def createcreate19,462
+  def showshow35,852
+  def editedit48,1170
+  def updateupdate59,1384
+  def destroydestroy81,2074
+  def current_user_has_book?current_user_has_book?90,2242
+  def add_book_to_current_user (book)add_book_to_current_user96,2432
+
+app/controllers/users_controller.rb,111
+class UsersController < ApplicationControllerUsersController1,0
+  def indexindex2,46
+  def showshow8,173
+
+app/controllers/application_controller.rb,387
+class ApplicationController < ActionController::BaseApplicationController1,0
+  def indexindex6,121
+  def current_usercurrent_user9,140
+  def signed_in?signed_in?13,238
+  def require_userrequire_user17,281
+  def require_no_userrequire_no_user26,473
+  def store_locationstore_location34,626
+  def redirect_to_root_with_error(error_message)redirect_to_root_with_error38,700
+
+app/controllers/sessions_controller.rb,224
+class SessionsController < ApplicationControllerSessionsController1,0
+  def createcreate5,158
+  def failurefailure24,849
+  def destroydestroy28,948
+  def sign_in_and_redirect(user, auth)sign_in_and_redirect35,1023
+
+app/models/statistics.rb,410
+class StatisticsStatistics1,0
+    def app_total_booksapp_total_books3,33
+    def app_total_usersapp_total_users7,88
+    def user_total_books (user)user_total_books11,143
+    def user_reading_books (user)user_reading_books17,260
+    def user_read_books (user)user_read_books23,425
+    def user_unread_books (user)user_unread_books29,591
+    def user_reading_since (user)user_reading_since35,751
+
+app/models/user.rb,284
+class User < ActiveRecord::BaseUser1,0
+  def to_paramto_param10,185
+  def has_book? (asin)has_book?14,229
+  def find_log (asin)find_log18,318
+    def create_from_auth (auth)create_from_auth23,454
+    def escape(value)escape41,1064
+    def unescape(value)unescape45,1122
+
+app/models/authentication.rb,61
+class Authentication < ActiveRecord::BaseAuthentication1,0
+
+app/models/amazon_book.rb,240
+class AmazonBookAmazonBook1,0
+  def initialize (attributes = {})initialize12,483
+  def persisted?persisted?18,640
+  def attributesattributes22,674
+    def find (keywords)find27,795
+    def find_by_asin (asin)find_by_asin74,2739
+
+app/models/book.rb,71
+class Book < ActiveRecord::BaseBook1,0
+  def to_paramto_param7,125
+
+app/models/reading_log.rb,574
+class ReadingLog < ActiveRecord::BaseReadingLog1,0
+  def started?started?12,323
+  def read?read?16,366
+  def statusstatus20,404
+  def status_stringstatus_string30,514
+  def reading_forreading_for34,562
+  def read_in_daysread_in_days40,731
+  def days_between_dates (first, second)days_between_dates47,842
+class ReadingLogReadingLog52,924
+  def dates_not_nil?dates_not_nil?53,941
+  def finish_date_cannot_be_less_than_start_datefinish_date_cannot_be_less_than_start_date57,1011
+  def finish_date_without_start_datefinish_date_without_start_date62,1177
