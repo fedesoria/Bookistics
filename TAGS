@@ -50,15 +50,25 @@ class SessionsController < ApplicationControllerSessionsController1,0
   def destroydestroy28,948
   def sign_in_and_redirect(user, auth)sign_in_and_redirect35,1023
 
-app/models/statistics.rb,410
+app/models/statistics.rb,1133
 class StatisticsStatistics1,0
-    def app_total_booksapp_total_books3,33
-    def app_total_usersapp_total_users7,88
-    def user_total_books (user)user_total_books11,143
-    def user_reading_books (user)user_reading_books17,260
-    def user_read_books (user)user_read_books23,425
-    def user_unread_books (user)user_unread_books29,591
-    def user_reading_since (user)user_reading_since35,751
+    def app_total_booksapp_total_books7,144
+    def app_total_usersapp_total_users11,199
+    def user_total_books (user)user_total_books15,254
+    def user_reading_books (user)user_reading_books21,371
+    def user_read_books (user)user_read_books27,536
+    def user_read_pages (user)user_read_pages33,702
+    def user_unread_books (user)user_unread_books42,963
+    def user_reading_since (user)user_reading_since48,1123
+    def user_reading_last (user)user_reading_last54,1254
+    def user_average_books_per_month (user)user_average_books_per_month60,1385
+    def user_average_books_per_year (user)user_average_books_per_year69,1671
+    def user_average_pages_per_month (user)user_average_pages_per_month73,1782
+    def user_average_pages_per_year (user)user_average_pages_per_year82,2068
+    def user_average_pages_per_day (user)user_average_pages_per_day86,2179
+    def user_average_days_per_book (user)user_average_days_per_book90,2286
+    def days_between_dates (a, b)days_between_dates100,2493
+    def average_per_month (quantity, days)average_per_month105,2614
 
 app/models/user.rb,284
 class User < ActiveRecord::BaseUser1,0
