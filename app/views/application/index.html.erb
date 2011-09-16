@@ -12,28 +12,32 @@ If you are here, log in using your twitter account and feel free to try it and <
 Keep in mind this is an staging/beta version, so it may be ugly, or missing features, or buggy so bear with us, let us know and enjoy the ride.
 </p>
 <p>
-<sub>Latest version: 0.1.5, updated @ August 31th, 2011 - 12:35AM</sub>
+<sub>Latest version: 0.1.6, updated @ September 5th, 2011 - 1:50AM</sub>
 </p>
 </div>
 <div class="centered staging">
   <h3>Changes in the latest version:</h3>
   <ul id="change_list">
-    <li>Fixed the layout of the book#edit action.</li>
-    <li>Removed an emacs backup file.
-    <li>Added an info message for books that you already have in the search results.
-    <li>Styled the search books form.</li>
-    <li>Removed the search box from the menu bar.</li>
-    <li>Added style to the error messages and info messages, moved them inside the content block.</li>
-    <li>Switch the loading order of stylesheets</li>
-    <li>Fixed the path to the stylesheet</li>
-    <li>added new menu! new search field needs to be coded</li>
-    <li>new buttons and aligned on search results</li>
-    <li>twitter bootstrap added</li>
-    <li>Fixed AmazonBook model to work with latest changes to the asin gem.</li>
-    <li>Updated the gems</li>
-    <li>Updated gems.</li>
-    <li>Just added a blank space.</li>
-    <li>Modified the rendering of the partials to be less verbose and more rails like.</li>
+    <li>Changed the style of the user list a little bit.</li>
+    <li>Added a way to look at the editorial review of books that have it. </li>
+    <li>Added sorting to the list of books in users#show.</li>
+    <li>Added more methods to the Statistics model.</li>
+    <li>Changed the loading animation.</li>
+    <li>login with twitter button hover</li>
+    <li>Added the Statistics module and some basic statistics</li>
+    <li>Simplified the collection rendering in some views a bit.</li>
+    <li>Added the will_paginate gem dependency and pagination for users and books</li>
+    <li>Added user.avatar_url and user.nickname</li>
+    <li>Removed the README file until we have one more meaningful.</li>
+    <li>Removed the file javascripts/jquery.min.js</li>
+    <li>Changed the layout to include all .js files in public/javascript.</li>
+    <li>Resolved conflicts</li>
+    <li>Added jquery-ui and a calendar widget to the books#edit action.</li>
+    <li>sign in with twitter buttons and style, latest books changed to a list</li>
+    <li>Added editorial_review to the books models.</li>
+    <li>Added a more meaningful message to the delete button.</li>
+    <li>Added a way to remove books from your list.</li>
+    <li>Refactored the code a bit to reduce repetition.</li>
   </ul>
 </div>
 <% end %>

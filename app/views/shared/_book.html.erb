@@ -5,15 +5,23 @@
           <div class="image">
               <%= image_tag book.image_url %>
           </div>
-          
+
 
           <div class="info">
               <h4>
                   <% if current_user %><%= link_to book.title, book_path(book) %><% else %><%= book.title %><% end %>
               </h4>
               <p>
-                   <%= book.authors %>, <%= book.pages %> Pages
+                   <strong><%= book.authors %>, <%= book.pages %> pages.</strong>
               </p>
+              <% if book.editorial_review %>
+              <div class="editorial_review">
+                <span class="control"><a class="show">Show editorial review</a></span>
+                <div class="content hidden">
+                  <%= book.editorial_review.html_safe %>
+                </div>
+              </div>
+              <% end %>
               <p>
 
                   <% unless user %>

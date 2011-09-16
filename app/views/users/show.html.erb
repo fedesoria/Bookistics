@@ -1,3 +1,19 @@
+<h2><%= @user.name %>'s statistics:</h2>
+
+<p>
+  <div class="statistics">
+    <ul class="unstyled">
+      <li><h4>Has read <%= Statistics.user_read_books(@user) %> books since <%= format_date Statistics.user_reading_since(@user) %>.</h4></li>
+      <li><h4>Has read <%= Statistics.user_read_pages(@user) %> pages since <%= format_date Statistics.user_reading_since(@user) %>.</h4></li>
+      <li><h4>Averages <%= '%2.2f' % Statistics.user_average_books_per_month(@user) %> books per month.</h4></li>
+      <li><h4>Averages <%= '%2.2f' % Statistics.user_average_pages_per_month(@user) %> pages per month.</h4></li>
+      <li><h4>Averages <%= '%2.2f' % Statistics.user_average_books_per_year(@user) %> books per year.</h4></li>
+      <li><h4>Averages <%= '%2.2f' % Statistics.user_average_pages_per_year(@user) %> pages per year.</h4></li>
+      <li><h4>Averages <%= '%2.2f' % Statistics.user_average_pages_per_day(@user) %> pages per day.</h4></li>
+    </ul>
+  </div>
+</p>
+
 <h2><%= @user.name %>'s books:</h2>
 
 <%= render :partial => 'shared/book', :collection => @books, :locals => { :user => @user } %>
