@@ -84,17 +84,8 @@ body {
 }
 
 .app_info {
-    position: relative;
-    text-align: center;
+    margin: 0 auto;
     width: 500px;
-    height: 35px;
-    top: -30px;
-    right: -450px;
-    border-bottom: 1px solid #000;
-    border-left: 1px solid #000;
-    border-right: 1px solid #000;
 
-    -webkit-box-shado:w 0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1);
-    -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1);
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
 }
