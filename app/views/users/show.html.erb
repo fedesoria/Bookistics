@@ -1,9 +1,11 @@
 <div class="header">
-  <% if @user.avatar_url %>
-    <div class="avatar">
+  <div class="avatar">
+    <% if @user.avatar_url %>
       <%= image_tag @user.avatar_url %>
-    </div>
-  <% end %>
+    <% else %>
+      <%= image_tag 'no_avatar.jpg' %>
+    <% end %>
+  </div>
   <h2><%= @user.name %>'s reading list</h2>
 </div>
 
