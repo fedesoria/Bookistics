@@ -2,4 +2,4 @@
 
 <%= render :partial => 'shared/book', :collection => @books, :locals => { :user => nil } %>
 
-<%= will_paginate @books %>
+<%= will_paginate @books, :container => false %>
