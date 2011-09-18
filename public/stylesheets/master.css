@@ -107,6 +107,15 @@ div.editorial_review span.control a {
     display: none;
 }
 
-.user {
+div.avatar {
+    border: 1px solid #ccc;
+    padding: 5px 5px 5px 5px;
+    width: 48px;
+    height: 48px;
+    float: left;
+    margin-right: 15px;
+}
 
+div.header {
+    margin-bottom: 30px;
 }

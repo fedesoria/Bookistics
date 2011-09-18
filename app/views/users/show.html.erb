@@ -1,21 +1,45 @@
-<h2><%= @user.name %>'s statistics:</h2>
+<div class="header">
+  <% if @user.avatar_url %>
+    <div class="avatar">
+      <%= image_tag @user.avatar_url %>
+    </div>
+  <% end %>
+  <h2><%= @user.name %>'s reading list</h2>
+</div>
 
-<p>
-  <div class="statistics">
-    <ul class="unstyled">
-      <li><h4>Has read <%= Statistics.user_read_books(@user) %> books since <%= format_date Statistics.user_reading_since(@user) %>.</h4></li>
-      <li><h4>Has read <%= Statistics.user_read_pages(@user) %> pages since <%= format_date Statistics.user_reading_since(@user) %>.</h4></li>
-      <li><h4>Averages <%= '%2.2f' % Statistics.user_average_books_per_month(@user) %> books per month.</h4></li>
-      <li><h4>Averages <%= '%2.2f' % Statistics.user_average_pages_per_month(@user) %> pages per month.</h4></li>
-      <li><h4>Averages <%= '%2.2f' % Statistics.user_average_books_per_year(@user) %> books per year.</h4></li>
-      <li><h4>Averages <%= '%2.2f' % Statistics.user_average_pages_per_year(@user) %> pages per year.</h4></li>
-      <li><h4>Averages <%= '%2.2f' % Statistics.user_average_pages_per_day(@user) %> pages per day.</h4></li>
-    </ul>
-  </div>
-</p>
+<ul class="tabs">
+  <li class="active"><%= link_to "Reading", "#", :id => "reading" %></li>
+  <li><%= link_to "Read", "#", :id => "read" %></li>
+  <li><%= link_to "Wants to read", "#", :id => "wants_to_read" %></li>
+  <li><%= link_to "Statistics", "#", :id => "statistics" %></li>
+</ul>
 
-<h2><%= @user.name %>'s books:</h2>
+<div class="reading">
+  <%= render :partial => 'shared/book',
+             :collection => @reading_books,
+             :locals => { :user => @user } %>
+</div>
 
-<%= render :partial => 'shared/book', :collection => @books, :locals => { :user => @user } %>
+<div class="read hidden">
+  <%= render :partial => 'shared/book',
+             :collection => @read_books,
+             :locals => { :user => @user } %>
+</div>
 
-<%= will_paginate @books %>
+<div class="wants_to_read hidden">
+  <%= render :partial => 'shared/book',
+             :collection => @wants_to_read_books,
+             :locals => { :user => @user } %>
+</div>
+
+<div class="statistics hidden">
+  <ul class="unstyled">
+    <li><h4>Has read <%= Statistics.user_read_books(@user) %> books since <%= format_date Statistics.user_reading_since(@user) %>.</h4></li>
+    <li><h4>Has read <%= Statistics.user_read_pages(@user) %> pages since <%= format_date Statistics.user_reading_since(@user) %>.</h4></li>
+    <li><h4>Averages <%= '%2.2f' % Statistics.user_average_books_per_month(@user) %> books per month.</h4></li>
+    <li><h4>Averages <%= '%2.2f' % Statistics.user_average_pages_per_month(@user) %> pages per month.</h4></li>
+    <li><h4>Averages <%= '%2.2f' % Statistics.user_average_books_per_year(@user) %> books per year.</h4></li>
+    <li><h4>Averages <%= '%2.2f' % Statistics.user_average_pages_per_year(@user) %> pages per year.</h4></li>
+    <li><h4>Averages <%= '%2.2f' % Statistics.user_average_pages_per_day(@user) %> pages per day.</h4></li>
+  </ul>
+</div>

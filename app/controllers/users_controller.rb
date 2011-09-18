@@ -7,12 +7,10 @@ class UsersController < ApplicationController
 
   def show
     if User.where('name = ?', User.unescape(params[:id])).exists?
-      @user = User.find_by_name(User.unescape(params[:id]))
-      @books = Book
-        .includes(:reading_logs)
-        .where('reading_logs.user_id = ?', @user.id)
-        .order('reading_logs.updated_at DESC')
-        .paginate(:page => params[:page])
+      @user                = User.find_by_name(User.unescape(params[:id]))
+      @reading_books       = Book.user_reading_books(@user)
+      @read_books          = Book.user_read_books(@user)
+      @wants_to_read_books = Book.user_wants_to_read_books(@user)
     else
       redirect_to_root_with_error("User not found")
     end
