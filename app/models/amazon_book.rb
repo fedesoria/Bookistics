@@ -53,6 +53,7 @@ class AmazonBook
               editorial_review = result.raw.EditorialReviews.EditorialReview.class == Array ?
                 result.raw.EditorialReviews.EditorialReview.first.Content :
                 result.raw.EditorialReviews.EditorialReview.Content
+              editorial_review.gsub!(/(<[^>]*>)|\n|\t/, '')
             end
 
             books << AmazonBook.new(:asin => result.asin,
@@ -93,6 +94,7 @@ class AmazonBook
           editorial_review = item.raw.EditorialReviews.EditorialReview.class == Array ?
             item.raw.EditorialReviews.EditorialReview.first.Content :
             item.raw.EditorialReviews.EditorialReview.Content
+          editorial_review.gsub!(/(<[^>]*>)|\n|\t/, '')
         end
 
         AmazonBook.new(:asin => item.asin,
