@@ -2,18 +2,27 @@
   <h2>People keeping track of their reading: </h2>
 </p>
 <% ((@users.size / 4) + 1).times do |row| %>
+<p>
 <div class="row">
   <% 4.times do |column| %>
     <% user = @users[row * 4 + column] %>
     <% if user %>
-      <div class="span4 columns">
-        <div class="user">
-          <%= link_to user.name, user_path(user) %>
-        </div>
-      </div>
+      <ul class="span4 columns unstyled">
+        <li class="user">
+          <div class="avatar">
+            <% if user.avatar_url %>
+              <%= image_tag user.avatar_url %>
+            <% else %>
+              <%= image_tag 'no_avatar.jpg' %>
+            <% end %>
+          </div>
+            <%= link_to user.name, user_path(user) %>
+        </li>
+      </ul>
     <% end %>
   <% end %>
 </div>
+</p>
 <% end %>
 
 <%= will_paginate @users, :container => false %>

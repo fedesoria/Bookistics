@@ -119,3 +119,14 @@ div.avatar {
 div.header {
     margin-bottom: 30px;
 }
+
+li.user {
+    padding: 5px 5px 5px 5px;
+    height: 64px;
+    vertical-align: middle;
+    margin-right: 15px;
+}
+
+li.user:hover {
+    background-color: #eee;
+}
