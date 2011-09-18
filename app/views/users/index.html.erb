@@ -17,6 +17,9 @@
             <% end %>
           </div>
             <%= link_to user.name, user_path(user) %>
+            <% if current_user and current_user == user %>
+              <br /><span class="label success">You!</span>
+            <% end %>
         </li>
       </ul>
     <% end %>
