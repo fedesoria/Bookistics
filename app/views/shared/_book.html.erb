@@ -1,46 +1,42 @@
 <div>
   <ul class="books_table unstyled">
-      <li>
+    <li>
+      <div class="image">
+        <%= image_tag book.image_url %>
+      </div>
 
-          <div class="image">
-              <%= image_tag book.image_url %>
+      <div class="info">
+        <h4>
+          <% if current_user %><%= link_to book.title, book_path(book) %><% else %><%= book.title %><% end %>
+        </h4>
+        <p>
+          <strong><%= book.authors %>, <%= book.pages %> pages.</strong>
+        </p>
+        <% if book.editorial_review %>
+          <div class="editorial_review">
+            <span class="control"><a class="show">Show editorial review</a></span>
+            <div class="content hidden">
+              <%= book.editorial_review.html_safe %>
+            </div>
           </div>
-
-
-          <div class="info">
-              <h4>
-                  <% if current_user %><%= link_to book.title, book_path(book) %><% else %><%= book.title %><% end %>
-              </h4>
-              <p>
-                   <strong><%= book.authors %>, <%= book.pages %> pages.</strong>
-              </p>
-              <% if book.editorial_review %>
-              <div class="editorial_review">
-                <span class="control"><a class="show">Show editorial review</a></span>
-                <div class="content hidden">
-                  <%= book.editorial_review.html_safe %>
-                </div>
-              </div>
+        <% end %>
+        <p>
+          <% unless user %>
+            <strong>Some readers:</strong><%= get_book_users_links book %>
+          <% else %>
+            <% log = user.find_log(book.asin) %>
+            <div>
+              <% if log.read? %>
+                Read the book in <%= log.read_in_days %> days.
+              <% elsif log.started? %>
+                Been reading this book for <%= log.reading_for %> days.
+              <% else %>
+                Has not started this book yet.
               <% end %>
-              <p>
-
-                  <% unless user %>
-                  <strong>Some readers:</strong>
-                  <%= get_book_users_links book %>
-                  <% else %>
-                  <% log = user.find_log(book.asin) %>
-                  <tr>
-                      <% if log.read? %>
-                      <td>Read the book in </td><td><%= log.read_in_days %> days.</td>
-                      <% elsif log.started? %>
-                      <td>Been reading this book for </td><td><%= log.reading_for %> days.</td>
-                      <% else %>
-                      <td colspan="2">Has not started this book yet.</td>
-                      <% end %>
-                  </tr>
-                  <% end %>
-              </p>
-          </div>
-      </li>
-  </table>
+            </div>
+          <% end %>
+        </p>
+      </div>
+    </li>
+  </ul>
 </div>
