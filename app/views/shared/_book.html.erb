@@ -22,7 +22,7 @@
         <% end %>
         <p>
           <% unless user %>
-            <strong>Some readers:</strong><%= get_book_users_links book %>
+            <strong>Some readers:</strong> <%= get_book_users_links book %>
           <% else %>
             <% log = user.find_log(book.asin) %>
             <div>
