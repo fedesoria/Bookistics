@@ -24,34 +24,24 @@
                 <div class="container">
                     <h3><a href="/">My Reading List</a></h3>
                     <ul>
-                        <% if signed_in? %>
-                        <!--<li> <%= link_to 'Profile', user_path(current_user) %></li>-->
-                        <li><%= link_to 'Users',
+                        <li><%= link_to 'Who has joined?',
                                         users_path,
                                         :rel => 'twipsy',
                                         :title => 'See a list of all the people that has joined us!' %></li>
-                        <li><%= link_to 'Books',
+                        <li><%= link_to 'Books people have added!',
                                         books_path,
                                         :rel => 'twipsy',
                                         :title => 'See a list of all the books other people has added!' %></li>
-                        <li><%= link_to 'Search Books',
-                                        new_book_path,
-                                        :rel => 'popover',
-                                        :title => 'Add books to your list!',
-                                        :'data-content' => 'This is the most important feature! You add books here to your own list!' %></li>
-                        <!-- <li><% link_to 'Sign out', signout_path %></li> -->
-
-                        <% else %>
-                        <li><%= link_to 'See who has joined!', users_path %></li>
-                        <li><%= link_to 'See books people added!', books_path %></li>
-                        <!-- <li><% link_to 'Sign in with twitter!', '/auth/twitter' %></li> -->
-
-                        <% end %>
                     </ul>
 
                     <ul class="nav secondary-nav">
                         <% if signed_in? %>
                         <li><%= link_to 'My Profile', user_path(current_user) %></li>
+                        <li><%= link_to 'Add Books',
+                                        new_book_path,
+                                        :rel => 'popover',
+                                        :title => 'Add books to your list!',
+                                        :'data-content' => 'This is the most important feature! You add books here to your own list!' %></li>
                         <li><%= link_to 'Sign out', signout_path %></li>
                         <% else %>
                         <li><a class="sign_twitter" href="/auth/twitter"></a></li>
