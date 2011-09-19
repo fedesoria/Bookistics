@@ -1,5 +1,4 @@
 <% unless RAILS_ENV == 'production' %>
-
 <div class="centered staging">
 <h1>Welcome</h1>
 <p>
@@ -11,33 +10,21 @@ If you are here, log in using your twitter account and feel free to try it and <
 <p>
 Keep in mind this is an staging/beta version, so it may be ugly, or missing features, or buggy so bear with us, let us know and enjoy the ride.
 </p>
-<p>
-<sub>Latest version: 0.1.6, updated @ September 5th, 2011 - 1:50AM</sub>
-</p>
 </div>
 <div class="centered staging">
   <h3>Changes in the latest version:</h3>
-  <ul id="change_list">
-    <li>Changed the style of the user list a little bit.</li>
-    <li>Added a way to look at the editorial review of books that have it. </li>
-    <li>Added sorting to the list of books in users#show.</li>
-    <li>Added more methods to the Statistics model.</li>
-    <li>Changed the loading animation.</li>
-    <li>login with twitter button hover</li>
-    <li>Added the Statistics module and some basic statistics</li>
-    <li>Simplified the collection rendering in some views a bit.</li>
-    <li>Added the will_paginate gem dependency and pagination for users and books</li>
-    <li>Added user.avatar_url and user.nickname</li>
-    <li>Removed the README file until we have one more meaningful.</li>
-    <li>Removed the file javascripts/jquery.min.js</li>
-    <li>Changed the layout to include all .js files in public/javascript.</li>
-    <li>Resolved conflicts</li>
-    <li>Added jquery-ui and a calendar widget to the books#edit action.</li>
-    <li>sign in with twitter buttons and style, latest books changed to a list</li>
-    <li>Added editorial_review to the books models.</li>
-    <li>Added a more meaningful message to the delete button.</li>
-    <li>Added a way to remove books from your list.</li>
-    <li>Refactored the code a bit to reduce repetition.</li>
-  </ul>
+  <dl>
+    <dt>Added statistics to the site! Yes finally!</dt>
+    <dd>Statistics are now displayed in each user profile!</dd>
+    <dt>Improved the application menu to be more helpful.</dt>
+    <dd>Menu names should be more descriptive, plus, they have tooltips now displaying their meaning.</dd>
+    <dt>Improved user profiles!</dt>
+    <dd>User profiles now have books separated in three tabs, "reading", "read", "Wants to read" making it easier to navigate.</dd>
+    <dt>Avatars !</dt>
+    <dd>User avatars are now displayed in user profiles and the user list!</dd>
+  </dl>
+  <p>
+    <sub>Latest version: 1.0.0, updated @ September 18th, 2011 - 8:45PM</sub>
+  </p>
 </div>
 <% end %>
