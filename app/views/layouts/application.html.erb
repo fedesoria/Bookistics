@@ -4,6 +4,9 @@
   <title>ReadingList</title>
 
   <%= javascript_include_tag :all %>
+  <%= javascript_include_tag 'bootstrap/bootstrap-tabs.js' %>
+  <%= javascript_include_tag 'bootstrap/bootstrap-twipsy.js' %>
+  <%= javascript_include_tag 'bootstrap/bootstrap-popover.js' %>
 
   <%= csrf_meta_tag %>
 
@@ -23,9 +26,19 @@
                     <ul>
                         <% if signed_in? %>
                         <!--<li> <%= link_to 'Profile', user_path(current_user) %></li>-->
-                        <li><%= link_to 'Users', users_path %></li>
-                        <li><%= link_to 'Books', books_path %></li>
-                        <li><%= link_to 'Search Books', new_book_path %></li>
+                        <li><%= link_to 'Users',
+                                        users_path,
+                                        :rel => 'twipsy',
+                                        :title => 'See a list of all the people that has joined us!' %></li>
+                        <li><%= link_to 'Books',
+                                        books_path,
+                                        :rel => 'twipsy',
+                                        :title => 'See a list of all the books other people has added!' %></li>
+                        <li><%= link_to 'Search Books',
+                                        new_book_path,
+                                        :rel => 'popover',
+                                        :title => 'Add books to your list!',
+                                        :'data-content' => 'This is the most important feature! You add books here to your own list!' %></li>
                         <!-- <li><% link_to 'Sign out', signout_path %></li> -->
 
                         <% else %>
