@@ -36,13 +36,19 @@
 
                     <ul class="nav secondary-nav">
                         <% if signed_in? %>
-                        <li><%= link_to 'My Profile', user_path(current_user) %></li>
+                        <li><%= link_to 'My Profile',
+                                        user_path(current_user),
+                                        :rel => 'twipsy',
+                                        :title => 'See your own books!' %></li>
                         <li><%= link_to 'Add Books',
                                         new_book_path,
                                         :rel => 'popover',
                                         :title => 'Add books to your list!',
                                         :'data-content' => 'This is the most important feature! You add books here to your own list!' %></li>
-                        <li><%= link_to 'Sign out', signout_path %></li>
+                        <li><%= link_to 'Sign out',
+                                        signout_path,
+                                        :rel => 'twipsy',
+                                        :title => 'Sign off the application!' %></li>
                         <% else %>
                         <li><a class="sign_twitter" href="/auth/twitter"></a></li>
                         <% end %>
