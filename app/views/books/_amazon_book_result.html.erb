@@ -1,14 +1,10 @@
-<li>
-    <table class="zebra-striped">
-        <tr>
-            <td><%= image_tag book.icon_url %></td>
-            <td>
-                <span><%= html_encode(book.title) %></span>
-                <span>(<%= html_encode(book.authors) %>)</span>
-            </td>
-            <td>
-                <%= render 'add_book_form', :book => book %>
-            </td>
-        </tr>
-    </table>
+<li class="search-item">
+  <div class="row">
+    <div class="span2 columns"><%= image_tag book.icon_url %></div>
+    <div class="span10 columns">
+      <span><%= html_encode(book.title) %></span>
+      <span>(<%= html_encode(book.authors) %>)</span>
+    </div>
+    <div class="span3 columns"><%= render 'add_book_form', :book => book %></div>
+  </div>
 </li>
