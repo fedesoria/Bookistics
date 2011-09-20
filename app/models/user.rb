@@ -29,10 +29,6 @@ class User < ActiveRecord::Base
         user.nickname   = auth['user_info']['nickname'] || "User#{ (Random.new.rand * 99999).to_i.to_s }"
       end
 
-      if auth['extra']['user_hash']
-          user.name = auth['extra']['user_hash']['name'] if auth['extra']['user_hash']['name']
-      end
-
       user.authentications.build(:provider => auth['provider'], :uid => auth['uid'])
       user.save!
       user
