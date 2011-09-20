@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   self.per_page = 48
 
   def to_param
-    User.escape(name)
+    nickname
   end
 
   def has_book? (asin)
@@ -38,12 +38,12 @@ class User < ActiveRecord::Base
       user
     end
 
-    def escape(value)
-      value.gsub(/ /, "_")
+    def from_param (param)
+      self.where('nickname = ?', param).first
     end
 
-    def unescape(value)
-      value.gsub(/_/, " ")
+    def param_exists? (param)
+      self.where('nickname = ?', param).exists?
     end
   end
 end

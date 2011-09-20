@@ -6,8 +6,8 @@ class UsersController < ApplicationController
   end
 
   def show
-    if User.where('name = ?', User.unescape(params[:id])).exists?
-      @user                = User.find_by_name(User.unescape(params[:id]))
+    if User.param_exists? params[:id]
+      @user                = User.from_param(params[:id])
       @reading_books       = Book.user_reading_books(@user)
       @read_books          = Book.user_read_books(@user)
       @wants_to_read_books = Book.user_wants_to_read_books(@user)
