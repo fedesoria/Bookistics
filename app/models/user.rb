@@ -3,8 +3,6 @@ class User < ActiveRecord::Base
   has_many :reading_logs
   has_many :books, :through => :reading_logs
 
-  attr_protected :name, :email
-
   self.per_page = 48
 
   def to_param

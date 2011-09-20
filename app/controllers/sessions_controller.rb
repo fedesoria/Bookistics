@@ -40,8 +40,13 @@ class SessionsController < ApplicationController
     # Temporal fix to update already existing profiles with these fields.
     # This only works for twitter, since its the only provider we use at the moment.
     if auth['user_info']
-      user.update_attributes! :avatar_url => auth['user_info']['image'],
-                              :nickname => auth['user_info']['nickname']
+      attributes = {}
+
+      attributes[:name]       = auth['user_info']['name'] if auth['user_info']['name']
+      attributes[:avatar_url] = auth['user_info']['image'] if auth['user_info']['image']
+      attributes[:nickname]   = auth['user_info']['nickname'] if auth['user_info']['nickname']
+
+      user.update_attributes! attributes unless attributes.empty?
     end
 
     redirect_to root_url
