@@ -29,9 +29,6 @@ class AmazonBook
     end
 
     def find (keywords)
-      # We first lookup the books with a Small response group, and then fetch the images
-      # individually, it's faster than requesting a Medium response group which contains
-      # images.
       books = []
       unless keywords.nil?
         # Default ResponseGroup is small, we specify it anyways in case it ever changes.
