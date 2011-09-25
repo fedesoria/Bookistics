@@ -7,7 +7,7 @@ class AmazonBook
   ATTRIBUTES_LIST = [ :asin, :title, :authors, :pages, :image_url, :icon_url, :details_url, :editorial_review ]
   attr_accessor *ATTRIBUTES_LIST
 
-  ASIN::Configuration.configure :secret => 'Uf6KBM1SoFz41V5NNZFw3IoCzixQ73m8+tBtVjL2', :key => 'AKIAJHTAM7STAKSLLXRQ', :logger => nil
+  ASIN::Configuration.configure :secret => ENV['AMAZON_SECRET'], :key => ENV['AMAZON_KEY'], :logger => nil
 
   def initialize (attributes = {})
     attributes.each do |name, value|
@@ -24,6 +24,10 @@ class AmazonBook
   end
 
   class << self
+    def find_debug (asin)
+      lookup = ASIN::Client.instance.lookup(asin, :ResponseGroup => :Large)
+    end
+
     def find (keywords)
       # We first lookup the books with a Small response group, and then fetch the images
       # individually, it's faster than requesting a Medium response group which contains
