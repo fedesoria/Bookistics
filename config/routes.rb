@@ -1,6 +1,7 @@
 ReadingList::Application.routes.draw do
   resources :books
 
+  post 'books/:id', :controller => :books, :action => :create
   post 'books/lookup_books', :controller => :books, :action => :lookup_books, :as => :lookup_books
 
   resources :users, :only => [ :index, :show ]

@@ -18,9 +18,6 @@
       <div class="span5 columns">
         <div class="align-center">
           <%= submit_tag 'Update', :class => 'btn primary' %>
-          <%= link_to(book_path(@book.asin), :remote => true, :method => :delete) do %>
-            <span class="btn danger">Remove from list!</span>
-          <% end %>
         </div>
       </div>
     </div>
