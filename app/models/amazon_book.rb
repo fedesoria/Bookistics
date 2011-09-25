@@ -2,7 +2,7 @@ class AmazonBook
   # Numbers of results to return in find()
   SEARCH_RESULTS = 5
 
-  EMPTY_IMAGE_URL = 'http://g-ecx.images-amazon.com/images/G/01/nav2/dp/no-image-avail-img-map._V192545771_AA300_.gif'
+  EMPTY_IMAGE_URL = 'no_cover.gif'
 
   ATTRIBUTES_LIST = [ :asin, :title, :authors, :pages, :image_url, :icon_url, :details_url, :editorial_review ]
   attr_accessor *ATTRIBUTES_LIST
