@@ -31,7 +31,6 @@ class AmazonBook
     def find (keywords)
       books = []
       unless keywords.nil?
-        # Default ResponseGroup is small, we specify it anyways in case it ever changes.
         results = ASIN::Client.instance.search(:Keywords      => keywords,
                                                :SearchIndex   => :Books,
                                                :ResponseGroup => :Medium) || []
